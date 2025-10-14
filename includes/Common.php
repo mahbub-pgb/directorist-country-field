@@ -10,9 +10,27 @@ class Common {
 
         // Save taxonomy terms when listing is inserted or updated
         add_action( 'save_post', [ $this, 'save_countries' ] );
+        add_filter( 'directorist_template', [ $this, 'change_template' ], 20, 2 );
 
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_assets_admin' ] );
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_assets_front' ] );
+    }
+
+    public function change_template( $template, $args ){
+
+
+        if ( 'listing-form/fields/country_expert' == $template ) {
+            $template = DLF_PLUGIN_DIR . 'templates/country_export.php';
+             if ( file_exists( $template ) ) {
+                include $template;
+
+                // Optionally, return false to prevent the default template from loading
+                return false;
+            }
+        }
+        // pri( $template );
+        return $template;
+
     }
 
    

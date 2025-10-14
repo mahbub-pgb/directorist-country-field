@@ -1,14 +1,5 @@
 <?php
 
-global $wpdb;
-$plugin_file = 'directorist-country-field/directorist-country-field.php';
-$active_plugins = maybe_unserialize(
-    $wpdb->get_var( "SELECT option_value FROM {$wpdb->prefix}options WHERE option_name = 'active_plugins'" )
-);
-
-$is_active = in_array( $plugin_file, (array) $active_plugins, true );
-if ( ! $is_active ) return;
-
 $placeholder = $data['placeholder'] ?? 'Select Countries';
 
 // Get all countries using your custom SQL function
