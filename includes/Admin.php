@@ -31,13 +31,14 @@ class Admin {
                     'menu_name'         => 'Expert Countries',
                 ],
                 'hierarchical'      => false,
-                'show_ui'           => false,
+                'show_ui'           => true,
                 'show_admin_column' => false,
                 'show_in_rest'      => false,
                 'public'            => true,
                 'rewrite'           => [ 'slug' => 'country-expert' ],
             ]
         );
+        add_all_countries_to_country_expert();
     }
 
     /**
@@ -126,6 +127,12 @@ class Admin {
      * Enqueue admin assets
      */
     public function enqueue_assets() {
+        wp_enqueue_style(
+            'dlf-admin',
+            DLF_PLUGIN_URL . 'assets/css/admin.css',
+            [],
+            '1.0.0'
+        );
         wp_enqueue_script(
             'dlf-admin',
             DLF_PLUGIN_URL . 'assets/js/admin.js',
