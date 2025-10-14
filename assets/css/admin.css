@@ -1,8 +1,0 @@
-#country_expert {
-    width: 100%;       /* full width */
-    min-height: 100px; /* reasonable default height */
-    max-height: 300px; /* prevent it from being too tall */
-    overflow-y: auto;  /* enable scrolling if options exceed height */
-    padding: 5px;
-    box-sizing: border-box;
-}

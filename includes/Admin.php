@@ -7,7 +7,7 @@ class Admin {
 
     public function __construct() {
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_assets' ] );
-        add_action( 'init', [ $this ,'register_country_taxonomy'], 20 );
+        // add_action( 'init', [ $this ,'register_country_taxonomy'], 20 );
         add_filter( 'atbdp_form_custom_widgets', [ $this, 'register_country_field' ] );
     }
 
@@ -52,7 +52,7 @@ class Admin {
 
         // 🔹 Fetch countries from taxonomy
         $countries = get_terms([
-            'taxonomy'   => 'country_expert',
+            'taxonomy'   => 'at_biz_dir-location',
             'hide_empty' => false,
         ]);
 
