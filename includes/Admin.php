@@ -7,7 +7,7 @@ class Admin {
 
     public function __construct() {
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_assets' ] );
-        // add_action( 'init', [ $this ,'register_country_taxonomy'], 20 );
+        add_action( 'init', [ $this ,'register_country_taxonomy'], 20 );
         add_filter( 'atbdp_form_custom_widgets', [ $this, 'register_country_field' ] );
     }
 
@@ -20,20 +20,20 @@ class Admin {
             'at_biz_dir',
             [
                 'labels' => [
-                    'name'              => 'Country',
-                    'singular_name'     => 'Country ',
+                    'name'              => 'Expert Countries',
+                    'singular_name'     => 'Expert Country ',
                     'search_items'      => 'Search Countries',
                     'all_items'         => 'All Countries',
                     'edit_item'         => 'Edit Country',
                     'update_item'       => 'Update Country',
                     'add_new_item'      => 'Add New Country',
                     'new_item_name'     => 'New Country Name',
-                    'menu_name'         => 'Countries',
+                    'menu_name'         => 'Expert Countries',
                 ],
                 'hierarchical'      => false,
-                'show_ui'           => true,
-                'show_admin_column' => true,
-                'show_in_rest'      => true,
+                'show_ui'           => false,
+                'show_admin_column' => false,
+                'show_in_rest'      => false,
                 'public'            => true,
                 'rewrite'           => [ 'slug' => 'country-expert' ],
             ]
@@ -52,7 +52,7 @@ class Admin {
 
         // 🔹 Fetch countries from taxonomy
         $countries = get_terms([
-            'taxonomy'   => 'at_biz_dir-location',
+            'taxonomy'   => 'country_expert',
             'hide_empty' => false,
         ]);
 
