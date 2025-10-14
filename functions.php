@@ -10,6 +10,35 @@ if ( ! function_exists( 'pri' ) ) {
 }
 
 /**
+ * Get all terms for the 'country_expert' taxonomy using direct SQL
+ *
+ * @return array Array of term objects with 'term_id', 'name', 'slug'
+ */
+function get_all_country_expert() {
+    global $wpdb;
+
+    // Join wp_terms and wp_term_taxonomy to get terms for country_expert
+    $taxonomy = 'country_expert';
+
+    $query = $wpdb->prepare(
+        "
+        SELECT t.term_id, t.name, t.slug
+        FROM {$wpdb->terms} AS t
+        INNER JOIN {$wpdb->term_taxonomy} AS tt
+            ON t.term_id = tt.term_id
+        WHERE tt.taxonomy = %s
+        ORDER BY t.name ASC
+        ",
+        $taxonomy
+    );
+
+    $results = $wpdb->get_results($query);
+
+    return $results; // Returns array of objects
+}
+
+
+/**
  * Get all countries in the 'country_expert' taxonomy
  * Returns array in same format as get_cetagory_options()
  *

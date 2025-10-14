@@ -11,15 +11,15 @@ class Front {
     }
 
     public function head(){
-        $all_countries = get_terms([
-            'taxonomy'   => 'country_expert',
-            'hide_empty' => false,
-        ]);
-
-        
+        // $all_countries = get_terms([
+        //     'taxonomy'   => 'country_expert',
+        //     'hide_empty' => false,
+        // ]);
 
 
-        pri( $all_countries );
+
+
+        // pri( get_all_country_expert() );
     }
     public function enqueue_assets() {
         // Add frontend JS or CSS if needed later
