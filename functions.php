@@ -1,8 +1,8 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-if ( ! function_exists( 'dlf_pri' ) ) {
-    function dlf_pri( $arg ) {
+if ( ! function_exists( 'pri' ) ) {
+    function pri( $arg ) {
         echo '<pre style="background:#111;color:#0f0;padding:10px;border-radius:6px;">';
         print_r( $arg );
         echo '</pre>';
