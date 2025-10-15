@@ -24,6 +24,6 @@ $country_names = wp_list_pluck( $selected_countries, 'name' );
         <i class="fa-solid fa-globe"></i>
     </div>
 
-    <strong><?php echo $title . ' :' ?></strong>
+   <?php echo $title . ' :' ?>
     <span><?php echo esc_html( implode( ', ', $country_names ) ); ?></span>
 </div>
