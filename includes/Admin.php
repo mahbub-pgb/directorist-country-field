@@ -28,11 +28,6 @@ class Admin {
                     'label' => __( 'Placeholder', 'directorist' ),
                     'value' => __( 'Select Country', 'directorist' ),
                 ],
-                'required' => [
-                    'type'  => 'toggle',
-                    'label' => __( 'Required', 'directorist' ),
-                    'value' => false,
-                ],
             ],
         ];
 
