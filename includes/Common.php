@@ -14,9 +14,6 @@ class Common {
         add_filter( 'directorist_template', [ $this, 'change_template' ], 20, 2 );
         add_filter( 'plugins_loaded', [ $this, 'load_plugin' ], 10, 2 );
         add_action( 'atbdp_before_listing_update', [$this, 'register_country_field'] );
-
-
-
     }
 
 

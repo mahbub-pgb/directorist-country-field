@@ -21,7 +21,6 @@ if ( file_exists( DLF_PLUGIN_DIR . 'vendor/autoload.php' ) ) {
 } else {
     // fallback for non-composer environments
     require_once DLF_PLUGIN_DIR . 'functions.php';
-    require_once DLF_PLUGIN_DIR . 'includes/class-dlf-loader.php';
 }
 
 add_action( 'plugins_loaded', function() {
