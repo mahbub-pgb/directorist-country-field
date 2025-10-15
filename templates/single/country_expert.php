@@ -12,6 +12,8 @@ if ( empty( $selected_countries ) || is_wp_error( $selected_countries ) ) {
     return;
 }
 
+$title = $args['data']['placeholder'];
+
 // Extract country names
 $country_names = wp_list_pluck( $selected_countries, 'name' );
 ?>
@@ -22,6 +24,6 @@ $country_names = wp_list_pluck( $selected_countries, 'name' );
         <i class="fa-solid fa-globe"></i>
     </div>
 
-    <strong><?php esc_html_e( 'Country Expert : ', 'directorist-country-field' ); ?></strong>
+    <strong><?php echo $title . ' :' ?></strong>
     <span><?php echo esc_html( implode( ', ', $country_names ) ); ?></span>
 </div>
