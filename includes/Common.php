@@ -10,15 +10,46 @@ class Common {
 
         // Save taxonomy terms when listing is inserted or updated
         add_action( 'save_post', [ $this, 'save_countries' ] );
+        add_action( 'init', [ $this ,'register_country_taxonomy'], 20 );
         add_filter( 'directorist_template', [ $this, 'change_template' ], 20, 2 );
+        add_filter( 'plugins_loaded', [ $this, 'load_plugin' ], 10, 2 );
+        add_action( 'atbdp_before_listing_update', [$this, 'register_country_field'] );
 
-        add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_assets_admin' ] );
-        add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_assets_front' ] );
+
+
     }
 
+
+    public function load_plugin(  ){
+        if ( ! class_exists( 'Directorist_Fields' ) ) return;
+
+        require_once DLI_PATH . 'includes/class-directorist-country-field.php';
+
+        add_filter( 'directorist_field_types', function ( $fields ) {
+            $fields['country_expert'] = 'Directorist_Country_Expert_Field';
+            return $fields;
+        });
+
+         // Add field to builder
+        add_filter( 'directorist_form_field_options', function ( $fields ) {
+            $fields['country'] = [
+                'type'        => 'country',
+                'label'       => __( 'Country', 'directorist' ),
+                'taxonomy'    => 'country_expert',
+                'field_class' => 'Directorist_Languages_Field',
+            ];
+            return $fields;
+        });
+    }
+
+    public function register_country_field( $listing_id ){
+        if ( empty( $_POST['country_expert'] ) ) {
+            wp_set_object_terms( $listing_id, [], 'country_expert', false );
+        }
+    }
     public function change_template( $template, $args ){
 
-        pri( $template );
+        // pri( $template );
 
 
         if ( 'listing-form/fields/country_expert' == $template ) {
@@ -34,6 +65,36 @@ class Common {
 
     }
 
+    /**
+     * Register the 'country_expert' taxonomy
+     */
+    public function register_country_taxonomy() {
+        register_taxonomy(
+            'country_expert',
+            'at_biz_dir',
+            [
+                'labels' => [
+                    'name'              => 'Expert Countries',
+                    'singular_name'     => 'Expert Country ',
+                    'search_items'      => 'Search Countries',
+                    'all_items'         => 'All Countries',
+                    'edit_item'         => 'Edit Country',
+                    'update_item'       => 'Update Country',
+                    'add_new_item'      => 'Add New Country',
+                    'new_item_name'     => 'New Country Name',
+                    'menu_name'         => 'Expert Countries',
+                ],
+                'hierarchical'      => false,
+                'show_ui'           => true,
+                'show_admin_column' => false,
+                'show_in_rest'      => false,
+                'public'            => true,
+                'rewrite'           => [ 'slug' => 'country-expert' ],
+            ]
+        );
+        add_all_countries_to_country_expert();
+    }
+
    
 
     /**
@@ -46,47 +107,9 @@ class Common {
         }
     }
 
-     /**
-     * Enqueue CSS/JS for admin
-     */
-    public function enqueue_assets_admin() {
-        wp_enqueue_style( 'select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css', [], '4.1.0' );
     
-        // JS
-        wp_enqueue_script( 'select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js', ['jquery'], '4.1.0', true );
-        wp_enqueue_style(
-            'dlf-common',
-            DLF_PLUGIN_URL . 'assets/css/common.css',
-            [],
-            '1.0.0'
-        );
-        wp_enqueue_script(
-            'dlf-common',
-            DLF_PLUGIN_URL . 'assets/js/common.js',
-            [ 'jquery' ],
-            '1.0.0',
-            true
-        );
-    }
 
-    /**
-     * Enqueue CSS/JS for frontend
-     */
-    public function enqueue_assets_front() {
-        wp_enqueue_style(
-            'dlf-frontend',
-            DLF_PLUGIN_URL . 'assets/css/frontend.css',
-            [],
-            '1.0.0'
-        );
-        wp_enqueue_script(
-            'dlf-frontend',
-            DLF_PLUGIN_URL . 'assets/js/frontend.js',
-            [ 'jquery' ],
-            '1.0.0',
-            true
-        );
-    }
+    
 
    
 }

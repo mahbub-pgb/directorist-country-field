@@ -7,38 +7,67 @@ class Admin {
 
     public function __construct() {
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_assets' ] );
-        add_action( 'init', [ $this ,'register_country_taxonomy'], 20 );
         add_filter( 'atbdp_form_custom_widgets', [ $this, 'register_country_field' ] );
+        add_filter( 'atbdp_single_listing_other_fields_widget', [ $this, 'register_country_expert_widget_single_content' ] );
     }
 
-    /**
-     * Register the 'country_expert' taxonomy
-     */
-    public function register_country_taxonomy() {
-        register_taxonomy(
-            'country_expert',
-            'at_biz_dir',
-            [
-                'labels' => [
-                    'name'              => 'Expert Countries',
-                    'singular_name'     => 'Expert Country ',
-                    'search_items'      => 'Search Countries',
-                    'all_items'         => 'All Countries',
-                    'edit_item'         => 'Edit Country',
-                    'update_item'       => 'Update Country',
-                    'add_new_item'      => 'Add New Country',
-                    'new_item_name'     => 'New Country Name',
-                    'menu_name'         => 'Expert Countries',
+    
+
+    
+    public function register_country_expert_widget_single_content( $widgets ) {
+
+        // 🔹 Fetch countries from taxonomy
+        $countries = get_terms([
+            'taxonomy'   => 'country_expert',
+            'hide_empty' => false,
+        ]);
+
+        $options = [];
+        if ( ! is_wp_error( $countries ) && ! empty( $countries ) ) {
+            foreach ( $countries as $country ) {
+                $options[ $country->term_id ] = $country->name;
+            }
+        } else {
+            $options = [ '' => __( 'No countries found', 'directorist-country-field' ) ];
+        }
+
+        // 🔹 Add your custom Country Expert field widget
+        $widgets['country_expert'] = [
+            'type'          => 'widget',
+            'label'         => __( 'Country Expert', 'directorist-country-field' ),
+            'icon'          => 'las la-globe', // Any line-awesome icon
+            'allowMultiple' => false,
+            'options'       => [
+                'label' => [
+                    'type'  => 'text',
+                    'label' => __( 'Label', 'directorist-country-field' ),
+                    'value' => __( 'Country Expert', 'directorist-country-field' ),
                 ],
-                'hierarchical'      => false,
-                'show_ui'           => true,
-                'show_admin_column' => false,
-                'show_in_rest'      => false,
-                'public'            => true,
-                'rewrite'           => [ 'slug' => 'country-expert' ],
-            ]
-        );
-        add_all_countries_to_country_expert();
+                'placeholder' => [
+                    'type'  => 'text',
+                    'label' => __( 'Placeholder', 'directorist-country-field' ),
+                    'value' => __( 'Select Countries', 'directorist-country-field' ),
+                ],
+                'options' => [
+                    'type'     => 'select',
+                    'label'    => __( 'Available Countries', 'directorist-country-field' ),
+                    'options'  => $options,
+                    'multiple' => true,
+                ],
+                'required' => [
+                    'type'  => 'toggle',
+                    'label' => __( 'Required', 'directorist-country-field' ),
+                    'value' => false,
+                ],
+                'only_for_admin' => [
+                    'type'  => 'toggle',
+                    'label' => __( 'Admin Only', 'directorist-country-field' ),
+                    'value' => false,
+                ],
+            ],
+        ];
+
+        return $widgets;
     }
 
     /**

@@ -1,6 +1,6 @@
 <?php
 
-use Directorist\Fields\Taxonomy_Field;
+// use Directorist\Fields\Taxonomy_Field;
 
 defined( 'ABSPATH' ) || exit;
 

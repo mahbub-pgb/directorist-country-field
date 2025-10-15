@@ -8,6 +8,7 @@ class Loader {
     public function __construct() {
         // Load shared field registration
 
+
         new Common();
 
         // Load admin or frontend logic
