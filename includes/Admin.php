@@ -8,7 +8,7 @@ class Admin {
     public function __construct() {
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_assets' ] );
         add_action( 'init', [ $this ,'register_country_taxonomy'], 20 );
-        add_filter( 'atbdp_form_preset_widgets', [ $this, 'register_country_field' ] );
+        add_filter( 'atbdp_form_custom_widgets', [ $this, 'register_country_field' ] );
     }
 
     /**

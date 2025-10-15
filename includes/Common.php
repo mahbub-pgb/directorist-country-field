@@ -18,6 +18,8 @@ class Common {
 
     public function change_template( $template, $args ){
 
+        pri( $template );
+
 
         if ( 'listing-form/fields/country_expert' == $template ) {
             $template = DLF_PLUGIN_DIR . 'templates/country_expert.php';
