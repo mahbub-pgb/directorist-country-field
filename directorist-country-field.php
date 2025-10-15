@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: Directorist Language Field
- * Description: Adds ISO 639-1 Language selector to Directorist listings.
+ * Plugin Name: Directorist country Field
+ * Description: Adds ISO 639-1 country selector to Directorist listings.
  * Version: 1.1.0
  * Author: Mahbub
- * Text Domain: directorist-language-field
+ * Text Domain: directorist-country-field
  */
 
 if ( ! defined( 'ABSPATH' ) ) {

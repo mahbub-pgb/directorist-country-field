@@ -8,16 +8,8 @@ Adds an ISO 639-1 Language selector custom field to the **Directorist** plugin.
 
 ## Features
 
-- Adds a **Language** field to Directorist listing forms.
-- Includes a **multi-select dropdown** for ~180 languages (ISO 639-1 codes).
-- Fully **searchable** and **admin configurable**.
-- Modular plugin structure:
-  - **Admin Class** – enqueue scripts, settings page.
-  - **Frontend Class** – frontend assets or styling.
-  - **Common Loader** – bootstrap the plugin.
-  - **Functions File** – reusable helper functions.
-- Composer-ready with **PSR-4 autoloading**.
-
+- Adds a **Counrty Expert** field to Directorist listing forms.
+- Template added in child theme 'astra-child/directorist/listing-form/custom-fields'
 ---
 
 ## Installation

@@ -1,206 +1,152 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+if ( ! function_exists( 'pri' ) ) {
+    function pri( $arg ) {
+        echo '<pre style="background:#111;color:#0f0;padding:10px;border-radius:6px;">';
+        print_r( $arg );
+        echo '</pre>';
+    }
+}
+
+if ( ! function_exists( 'dcf_load_template' ) ) {
+    /**
+     * Load a PHP template file and pass data to it.
+     *
+     * @param string $file  Absolute path to the template file.
+     * @param array  $args  Optional. Variables to extract for use inside the template.
+     * @param bool   $echo  Optional. Whether to directly print the output. Default true.
+     *
+     * @return string|null  Returns output if $echo = false, otherwise prints it.
+     */
+    function dcf_load_template( $file, $args = [], $echo = true ) {
+        if ( ! file_exists( $file ) ) {
+            return;
+        }
+
+        // Extract args as local variables inside template
+        if ( is_array( $args ) && ! empty( $args ) ) {
+            extract( $args, EXTR_SKIP );
+        }
+
+        // Capture template output
+        ob_start();
+        include $file;
+        $output = ob_get_clean();
+
+        if ( $echo ) {
+            echo $output;
+            return null;
+        }
+
+        return $output;
+    }
+}
+
 /**
- * Return ISO 639-1 language codes (master list)
+ * Get all countries in the 'country_expert' taxonomy
+ * Returns array in same format as get_cetagory_options()
  *
  * @return array
  */
-function dlf_get_iso_639_1_languages() {
-    $languages = [
-        "aa"=>"Afar",
-        "ab"=>"Abkhaz",
-        "ae"=>"Avestan",
-        "af"=>"Afrikaans",
-        "ak"=>"Akan",
-        "am"=>"Amharic",
-        "an"=>"Aragonese",
-        "ar"=>"Arabic",
-        "as"=>"Assamese",
-        "av"=>"Avaric",
-        "ay"=>"Aymara",
-        "az"=>"Azerbaijani",
-        "ba"=>"Bashkir",
-        "be"=>"Belarusian",
-        "bg"=>"Bulgarian",
-        "bh"=>"Bihari languages",
-        "bi"=>"Bislama",
-        "bm"=>"Bambara",
-        "bn"=>"Bengali",
-        "bo"=>"Tibetan",
-        "br"=>"Breton",
-        "bs"=>"Bosnian",
-        "ca"=>"Catalan",
-        "ce"=>"Chechen",
-        "ch"=>"Chamorro",
-        "co"=>"Corsican",
-        "cr"=>"Cree",
-        "cs"=>"Czech",
-        "cu"=>"Church Slavic",
-        "cv"=>"Chuvash",
-        "cy"=>"Welsh",
-        "da"=>"Danish",
-        "de"=>"German",
-        "dv"=>"Divehi",
-        "dz"=>"Dzongkha",
-        "ee"=>"Ewe",
-        "el"=>"Greek",
-        "en"=>"English",
-        "eo"=>"Esperanto",
-        "es"=>"Spanish",
-        "et"=>"Estonian",
-        "eu"=>"Basque",
-        "fa"=>"Persian",
-        "ff"=>"Fulah",
-        "fi"=>"Finnish",
-        "fj"=>"Fijian",
-        "fo"=>"Faroese",
-        "fr"=>"French",
-        "fy"=>"Western Frisian",
-        "ga"=>"Irish",
-        "gd"=>"Scottish Gaelic",
-        "gl"=>"Galician",
-        "gn"=>"Guarani",
-        "gu"=>"Gujarati",
-        "gv"=>"Manx",
-        "ha"=>"Hausa",
-        "he"=>"Hebrew",
-        "hi"=>"Hindi",
-        "ho"=>"Hiri Motu",
-        "hr"=>"Croatian",
-        "ht"=>"Haitian Creole",
-        "hu"=>"Hungarian",
-        "hy"=>"Armenian",
-        "hz"=>"Herero",
-        "ia"=>"Interlingua",
-        "id"=>"Indonesian",
-        "ie"=>"Interlingue",
-        "ig"=>"Igbo",
-        "ii"=>"Sichuan Yi",
-        "ik"=>"Inupiaq",
-        "io"=>"Ido",
-        "is"=>"Icelandic",
-        "it"=>"Italian",
-        "iu"=>"Inuktitut",
-        "ja"=>"Japanese",
-        "jv"=>"Javanese",
-        "ka"=>"Georgian",
-        "kg"=>"Kongo",
-        "ki"=>"Kikuyu",
-        "kj"=>"Kuanyama",
-        "kk"=>"Kazakh",
-        "kl"=>"Kalaallisut",
-        "km"=>"Khmer",
-        "kn"=>"Kannada",
-        "ko"=>"Korean",
-        "kr"=>"Kanuri",
-        "ks"=>"Kashmiri",
-        "ku"=>"Kurdish",
-        "kv"=>"Komi",
-        "kw"=>"Cornish",
-        "ky"=>"Kyrgyz",
-        "la"=>"Latin",
-        "lb"=>"Luxembourgish",
-        "lg"=>"Ganda",
-        "li"=>"Limburgish",
-        "ln"=>"Lingala",
-        "lo"=>"Lao",
-        "lt"=>"Lithuanian",
-        "lu"=>"Luba-Katanga",
-        "lv"=>"Latvian",
-        "mg"=>"Malagasy",
-        "mh"=>"Marshallese",
-        "mi"=>"Māori",
-        "mk"=>"Macedonian",
-        "ml"=>"Malayalam",
-        "mn"=>"Mongolian",
-        "mr"=>"Marathi",
-        "ms"=>"Malay",
-        "mt"=>"Maltese",
-        "my"=>"Burmese",
-        "na"=>"Nauru",
-        "nb"=>"Norwegian Bokmål",
-        "nd"=>"North Ndebele",
-        "ne"=>"Nepali",
-        "ng"=>"Ndonga",
-        "nl"=>"Dutch",
-        "nn"=>"Norwegian Nynorsk",
-        "no"=>"Norwegian",
-        "nr"=>"South Ndebele",
-        "nv"=>"Navajo",
-        "ny"=>"Chichewa",
-        "oc"=>"Occitan",
-        "oj"=>"Ojibwa",
-        "om"=>"Oromo",
-        "or"=>"Odia",
-        "os"=>"Ossetian",
-        "pa"=>"Punjabi",
-        "pi"=>"Pali",
-        "pl"=>"Polish",
-        "ps"=>"Pashto",
-        "pt"=>"Portuguese",
-        "qu"=>"Quechua",
-        "rm"=>"Romansh",
-        "rn"=>"Rundi",
-        "ro"=>"Romanian",
-        "ru"=>"Russian",
-        "rw"=>"Kinyarwanda",
-        "sa"=>"Sanskrit",
-        "sc"=>"Sardinian",
-        "sd"=>"Sindhi",
-        "se"=>"Northern Sami",
-        "sg"=>"Sango",
-        "si"=>"Sinhala",
-        "sk"=>"Slovak",
-        "sl"=>"Slovenian",
-        "sm"=>"Samoan",
-        "sn"=>"Shona",
-        "so"=>"Somali",
-        "sq"=>"Albanian",
-        "sr"=>"Serbian",
-        "ss"=>"Swati",
-        "st"=>"Southern Sotho",
-        "su"=>"Sundanese",
-        "sv"=>"Swedish",
-        "sw"=>"Swahili",
-        "ta"=>"Tamil",
-        "te"=>"Telugu",
-        "tg"=>"Tajik",
-        "th"=>"Thai",
-        "ti"=>"Tigrinya",
-        "tk"=>"Turkmen",
-        "tl"=>"Tagalog",
-        "tn"=>"Tswana",
-        "to"=>"Tongan",
-        "tr"=>"Turkish",
-        "ts"=>"Tsonga",
-        "tt"=>"Tatar",
-        "tw"=>"Twi",
-        "ty"=>"Tahitian",
-        "ug"=>"Uyghur",
-        "uk"=>"Ukrainian",
-        "ur"=>"Urdu",
-        "uz"=>"Uzbek",
-        "ve"=>"Venda",
-        "vi"=>"Vietnamese",
-        "vo"=>"Volapük",
-        "wa"=>"Walloon",
-        "wo"=>"Wolof",
-        "xh"=>"Xhosa",
-        "yi"=>"Yiddish",
-        "yo"=>"Yoruba",
-        "za"=>"Zhuang",
-        "zh"=>"Chinese",
-        "zu"=>"Zulu"
+function get_country_options() {
+
+    $terms = get_terms([
+        'taxonomy'   => 'country_expert',
+        'hide_empty' => false,
+    ]);
+
+    $options = [];
+
+    if ( is_wp_error( $terms ) || ! count( $terms ) ) {
+        return $options;
+    }
+
+    foreach ( $terms as $term ) {
+        $options[] = [
+            'id'    => $term->term_id,
+            'value' => $term->term_id,
+            'label' => $term->name,
+        ];
+    }
+
+    return $options;
+}
+
+
+/**
+ * Get full list of countries.
+ *
+ * @return array List of country names.
+ */
+function get_all_countries_list() {
+    return [
+        'Afghanistan', 'Albania', 'Algeria', 'Andorra', 'Angola', 'Antigua and Barbuda',
+        'Argentina', 'Armenia', 'Australia', 'Austria', 'Azerbaijan', 'Bahamas',
+        'Bahrain', 'Bangladesh', 'Barbados', 'Belarus', 'Belgium', 'Belize', 'Benin',
+        'Bhutan', 'Bolivia', 'Bosnia and Herzegovina', 'Botswana', 'Brazil', 'Brunei',
+        'Bulgaria', 'Burkina Faso', 'Burundi', 'Cabo Verde', 'Cambodia', 'Cameroon',
+        'Canada', 'Central African Republic', 'Chad', 'Chile', 'China', 'Colombia',
+        'Comoros', 'Congo (Congo-Brazzaville)', 'Costa Rica', 'Croatia', 'Cuba',
+        'Cyprus', 'Czech Republic', 'Democratic Republic of the Congo', 'Denmark',
+        'Djibouti', 'Dominica', 'Dominican Republic', 'Ecuador', 'Egypt', 'El Salvador',
+        'Equatorial Guinea', 'Eritrea', 'Estonia', 'Eswatini', 'Ethiopia', 'Fiji',
+        'Finland', 'France', 'Gabon', 'Gambia', 'Georgia', 'Germany', 'Ghana', 'Greece',
+        'Grenada', 'Guatemala', 'Guinea', 'Guinea-Bissau', 'Guyana', 'Haiti',
+        'Honduras', 'Hungary', 'Iceland', 'India', 'Indonesia', 'Iran', 'Iraq', 'Ireland',
+        'Israel', 'Italy', 'Jamaica', 'Japan', 'Jordan', 'Kazakhstan', 'Kenya', 'Kiribati',
+        'Kuwait', 'Kyrgyzstan', 'Laos', 'Latvia', 'Lebanon', 'Lesotho', 'Liberia',
+        'Libya', 'Liechtenstein', 'Lithuania', 'Luxembourg', 'Madagascar', 'Malawi',
+        'Malaysia', 'Maldives', 'Mali', 'Malta', 'Marshall Islands', 'Mauritania',
+        'Mauritius', 'Mexico', 'Micronesia', 'Moldova', 'Monaco', 'Mongolia',
+        'Montenegro', 'Morocco', 'Mozambique', 'Myanmar (Burma)', 'Namibia', 'Nauru',
+        'Nepal', 'Netherlands', 'New Zealand', 'Nicaragua', 'Niger', 'Nigeria',
+        'North Korea', 'North Macedonia', 'Norway', 'Oman', 'Pakistan', 'Palau',
+        'Palestine State', 'Panama', 'Papua New Guinea', 'Paraguay', 'Peru', 'Philippines',
+        'Poland', 'Portugal', 'Qatar', 'Romania', 'Russia', 'Rwanda', 'Saint Kitts and Nevis',
+        'Saint Lucia', 'Saint Vincent and the Grenadines', 'Samoa', 'San Marino',
+        'Sao Tome and Principe', 'Saudi Arabia', 'Senegal', 'Serbia', 'Seychelles',
+        'Sierra Leone', 'Singapore', 'Slovakia', 'Slovenia', 'Solomon Islands', 'Somalia',
+        'South Africa', 'South Korea', 'South Sudan', 'Spain', 'Sri Lanka', 'Sudan',
+        'Suriname', 'Sweden', 'Switzerland', 'Syria', 'Tajikistan', 'Tanzania', 'Thailand',
+        'Timor-Leste', 'Togo', 'Tonga', 'Trinidad and Tobago', 'Tunisia', 'Turkey',
+        'Turkmenistan', 'Tuvalu', 'Uganda', 'Ukraine', 'United Arab Emirates',
+        'United Kingdom', 'United States of America', 'Uruguay', 'Uzbekistan', 'Vanuatu',
+        'Vatican City', 'Venezuela', 'Vietnam', 'Yemen', 'Zambia', 'Zimbabwe'
     ];
-    return $languages;
+}
+
+/**
+ * Add all countries to taxonomy 'country_expert' if not already added.
+ */
+function add_all_countries_to_country_expert() {
+    $taxonomy  = 'country_expert';
+    $countries = get_all_countries_list();
+
+    foreach ( $countries as $country ) {
+        $exists = term_exists( $country, $taxonomy );
+
+        if ( ! $exists ) {
+            $result = wp_insert_term( $country, $taxonomy );
+
+            if ( is_wp_error( $result ) ) {
+                error_log( "❌ Failed to add country: {$country} - " . $result->get_error_message() );
+            } else {
+                error_log( "✅ Added country: {$country}" );
+            }
+        }
+    }
 }
 
 /**
  * Debug helper
  */
-function dlf_log( $data ) {
-    if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-        error_log( print_r( $data, true ) );
+if ( ! function_exists( 'dlf_log' ) ) {
+    function dlf_log( $data ) {
+        if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
+            error_log( print_r( $data, true ) );
+        }
     }
 }
+
+

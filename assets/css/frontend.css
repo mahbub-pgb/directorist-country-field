@@ -1,0 +1,33 @@
+.directorist-country-expert-section {
+    margin-top: 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.directorist-country-expert-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.directorist-country-expert-table th,
+.directorist-country-expert-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+}
+.directorist-country-expert-table th {
+    background-color: #f9f9f9;
+    font-weight: 600;
+    text-align: left;
+}
+.directorist-country-expert-table tr:last-child td {
+    border-bottom: none;
+}
+.directorist-country-expert-icon{
+    color: white;
+    background-color: #FF6308;
+    height: 34px;
+    width: 35px;
+    text-align: center;
+    padding-top: 2px;
+    border-radius: 66px;
+    font-size: 20px;
+}
