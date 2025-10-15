@@ -9,15 +9,40 @@ class Admin {
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_assets' ] );
         add_filter( 'atbdp_form_custom_widgets', [ $this, 'register_country_field' ] );
         add_filter( 'atbdp_single_listing_other_fields_widget', [ $this, 'register_country_expert_widget_single_content' ] );
+        add_filter( 'directorist_search_form_widgets', [ $this, 'directorist_search_form_widgets' ] );
+    }
+
+    public function directorist_search_form_widgets( $search_form_widgets ){
+         // Add "Expert Countries" widget under "Other Fields"
+        $search_form_widgets['other_widgets']['widgets']['country_expert'] = [
+            'label'   => __( 'Expert Countries', 'directorist' ),
+            'icon'    => 'las la-globe', // example icon, you can change
+            'options' => [
+                'label' => [
+                    'type'  => 'text',
+                    'label' => __( 'Label', 'directorist' ),
+                    'value' => __( 'Country Expert', 'directorist' ),
+                ],
+                'placeholder' => [
+                    'type'  => 'text',
+                    'label' => __( 'Placeholder', 'directorist' ),
+                    'value' => __( 'Select Country', 'directorist' ),
+                ],
+                'required' => [
+                    'type'  => 'toggle',
+                    'label' => __( 'Required', 'directorist' ),
+                    'value' => false,
+                ],
+            ],
+        ];
+
+        return $search_form_widgets;
     }
 
     
 
     
     public function register_country_expert_widget_single_content( $widgets ) {
-
-        
-
         // 🔹 Add your custom Country Expert field widget
         $widgets['country_expert'] = [
             'type'          => 'widget',

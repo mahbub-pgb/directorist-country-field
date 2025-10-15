@@ -24,6 +24,7 @@ class Front {
     }
 
     public function change_template( $template, $args ){
+        pri( $template );
         if ( 'single/fields/country_expert' == $template ) {
             $template = DLF_PLUGIN_DIR . 'templates/single/country_expert.php';
              if ( file_exists( $template ) ) {
