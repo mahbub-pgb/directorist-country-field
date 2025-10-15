@@ -156,6 +156,22 @@ class Admin {
      * Enqueue admin assets
      */
     public function enqueue_assets() {
+        // Select2 CSS
+        wp_enqueue_style(
+            'select2',
+            'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css',
+            [],
+            '4.1.0'
+        );
+
+        // Select2 JS
+        wp_enqueue_script(
+            'select2',
+            'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js',
+            [ 'jquery' ],
+            '4.1.0',
+            true
+        );
         wp_enqueue_style(
             'dlf-admin',
             DLF_PLUGIN_URL . 'assets/css/admin.css',

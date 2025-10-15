@@ -39,6 +39,17 @@ class Front {
      * Enqueue CSS/JS for frontend
      */
     public function enqueue_assets() {
+
+        // Select2 CSS
+        wp_enqueue_style(
+            'select2',
+            'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css',
+            [],
+            '4.1.0'
+        );
+
+        // Select2 JS
+        
         wp_enqueue_style(
             'dlf-frontend',
             DLF_PLUGIN_URL . 'assets/css/frontend.css',
