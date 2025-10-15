@@ -16,20 +16,7 @@ class Admin {
     
     public function register_country_expert_widget_single_content( $widgets ) {
 
-        // 🔹 Fetch countries from taxonomy
-        $countries = get_terms([
-            'taxonomy'   => 'country_expert',
-            'hide_empty' => false,
-        ]);
-
-        $options = [];
-        if ( ! is_wp_error( $countries ) && ! empty( $countries ) ) {
-            foreach ( $countries as $country ) {
-                $options[ $country->term_id ] = $country->name;
-            }
-        } else {
-            $options = [ '' => __( 'No countries found', 'directorist-country-field' ) ];
-        }
+        
 
         // 🔹 Add your custom Country Expert field widget
         $widgets['country_expert'] = [
@@ -46,23 +33,7 @@ class Admin {
                 'placeholder' => [
                     'type'  => 'text',
                     'label' => __( 'Placeholder', 'directorist-country-field' ),
-                    'value' => __( 'Select Countries', 'directorist-country-field' ),
-                ],
-                'options' => [
-                    'type'     => 'select',
-                    'label'    => __( 'Available Countries', 'directorist-country-field' ),
-                    'options'  => $options,
-                    'multiple' => true,
-                ],
-                'required' => [
-                    'type'  => 'toggle',
-                    'label' => __( 'Required', 'directorist-country-field' ),
-                    'value' => false,
-                ],
-                'only_for_admin' => [
-                    'type'  => 'toggle',
-                    'label' => __( 'Admin Only', 'directorist-country-field' ),
-                    'value' => false,
+                    'value' => __( 'Selected Countries', 'directorist-country-field' ),
                 ],
             ],
         ];
