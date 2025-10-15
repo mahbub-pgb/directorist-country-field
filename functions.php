@@ -9,6 +9,41 @@ if ( ! function_exists( 'pri' ) ) {
     }
 }
 
+if ( ! function_exists( 'dcf_load_template' ) ) {
+    /**
+     * Load a PHP template file and pass data to it.
+     *
+     * @param string $file  Absolute path to the template file.
+     * @param array  $args  Optional. Variables to extract for use inside the template.
+     * @param bool   $echo  Optional. Whether to directly print the output. Default true.
+     *
+     * @return string|null  Returns output if $echo = false, otherwise prints it.
+     */
+    function dcf_load_template( $file, $args = [], $echo = true ) {
+        if ( ! file_exists( $file ) ) {
+            return;
+        }
+
+        // Extract args as local variables inside template
+        if ( is_array( $args ) && ! empty( $args ) ) {
+            extract( $args, EXTR_SKIP );
+        }
+
+        // Capture template output
+        ob_start();
+        include $file;
+        $output = ob_get_clean();
+
+        if ( $echo ) {
+            echo $output;
+            return null;
+        }
+
+        return $output;
+    }
+}
+
+
 /**
  * Get all terms for the 'country_expert' taxonomy using direct SQL
  *

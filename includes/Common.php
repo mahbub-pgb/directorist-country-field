@@ -20,15 +20,14 @@ class Common {
 
 
         if ( 'listing-form/fields/country_expert' == $template ) {
-            $template = DLF_PLUGIN_DIR . 'templates/country_export.php';
+            $template = DLF_PLUGIN_DIR . 'templates/country_expert.php';
              if ( file_exists( $template ) ) {
-                include $template;
 
-                // Optionally, return false to prevent the default template from loading
+                dcf_load_template( $template, $args );
+                
                 return false;
             }
         }
-        // pri( $template );
         return $template;
 
     }
