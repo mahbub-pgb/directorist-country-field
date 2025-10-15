@@ -21,3 +21,13 @@
 .directorist-country-expert-table tr:last-child td {
     border-bottom: none;
 }
+.directorist-country-expert-icon{
+    color: white;
+    background-color: #FF6308;
+    height: 34px;
+    width: 35px;
+    text-align: center;
+    padding-top: 2px;
+    border-radius: 66px;
+    font-size: 20px;
+}
