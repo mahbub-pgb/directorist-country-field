@@ -42,7 +42,7 @@ class Admin {
         $widgets['country_expert'] = [
             'type'          => 'widget',
             'label'         => __( 'Country Expert', 'directorist-country-field' ),
-            'icon'          => 'las la-globe', // Any line-awesome icon
+            'icon'          =>  'las la-globe', // Any line-awesome icon
             'allowMultiple' => false,
             'options'       => [
                 'label' => [
@@ -89,7 +89,7 @@ class Admin {
         // 🔹 Add the Country Expert field
         $fields['country_expert'] = [
             'label'   => __( 'Country Expert', 'directorist-country-field' ),
-            'icon'    => 'uil uil-globe',
+            'icon'    => 'las la-globe',
             'options' => [
                 'type' => [
                     'type'  => 'hidden',
