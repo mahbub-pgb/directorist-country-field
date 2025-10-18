@@ -23,13 +23,16 @@ if ( ! is_array( $value ) ) {
 <div class="directorist-search-field directorist-form-group">
     <div class="directorist-select directorist-search-field__input">
     
-
+<?php 
+    // pri( $args['searchform']->form_data[1]['fields'][] );
+    // pri( $data );
+ ?>
    
        
 
-        <?php if ( ! empty($args['label'] ) ) : ?>
+        <?php if ( ! empty( $data['label'] ) ) : ?>
             <label class="directorist-search-field__label">
-                <?php echo esc_html($args['label'] ); ?>
+                <?php echo esc_html( $data['label'] ); ?>
             </label>
         <?php endif; ?>
 
