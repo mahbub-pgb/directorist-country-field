@@ -9,19 +9,14 @@ class Front {
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_assets' ] );
         add_action( 'wp_head', [ $this, 'head' ] );
         add_filter( 'directorist_template', [ $this, 'change_template' ], 20, 2 );
-        // add_filter( 'directorist_all_listings_query_arguments', [ $this, 'directorist_all_listings' ], 20, 2 );
+        add_filter( 'directorist_listings_query_results', [ $this, 'query_results' ], 999999, 1 );
     }
 
     public function head(){
-        // $all_countries = get_terms([
-        //     'taxonomy'   => 'country_expert',
-        //     'hide_empty' => false,
-        // ]);
 
-
-
-
-        // pri( get_all_country_expert() );
+        // $selected = $_GET['country_expert']; 
+        // $ids = explode(',', $selected); 
+        // pri( $ids );
     }
 
     public function change_template( $template, $args ){
@@ -48,28 +43,46 @@ class Front {
         return $template;
     }
 
-    public function directorist_all_listings(  $args, $listings ){
-        // Check if user selected country_expert in search form
-        if ( ! empty( $_GET['custom_field']['country_expert'] ) ) {
-            pri( $_GET['custom_field'] );
-            $country_ids = array_map( 'intval', (array) $_GET['custom_field']['country_expert'] );
+       public function query_results( $query_result ) {
+        // Ensure $query_result->ids exists and is an array
+        if ( ! empty( $query_result->ids ) && is_array( $query_result->ids ) ) {
 
-            $tax_query = [
-                'taxonomy' => 'country_expert',
-                'field'    => 'term_id',
-                'terms'    => $country_ids,
-            ];
+            // Check if 'country_expert' is set in URL
+            if ( isset( $_GET['country_expert'] ) && ! empty( $_GET['country_expert'] ) ) {
 
-            if ( ! empty( $args['tax_query'] ) ) {
-                // Append to existing tax queries
-                $args['tax_query'][] = $tax_query;
-            } else {
-                $args['tax_query'] = [ $tax_query ];
+                $selected = sanitize_text_field( $_GET['country_expert'] );       // get string from URL
+                $ids = array_map( 'intval', explode( ',', $selected ) );          // convert to array of integers
+
+                // Filter the query_result->ids based on selected country_expert IDs
+                $filtered_ids = [];
+                foreach ( $query_result->ids as $post_id ) {
+                    $post_terms = wp_get_post_terms( $post_id, 'country_expert', ['fields' => 'ids'] );
+                    if ( array_intersect( $post_terms, $ids ) ) {
+                        $filtered_ids[] = $post_id;
+                    }
+                }
+
+                // Update query_result
+                $query_result->ids = array_values( $filtered_ids ); // reindex array
+                $query_result->total = count( $query_result->ids );
+
+                // Update total pages if using per_page
+                if ( ! empty( $query_result->per_page ) && $query_result->per_page > 0 ) {
+                    $query_result->total_pages = ceil( $query_result->total / $query_result->per_page );
+                } else {
+                    $query_result->total_pages = 1;
+                }
+
             }
+            // If $_GET['country_expert'] is NOT set, do nothing
+            // Original $query_result is returned unchanged
         }
 
-        return $args;
+        return $query_result;
     }
+
+
+
     /**
      * Enqueue CSS/JS for frontend
      */
