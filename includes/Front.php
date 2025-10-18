@@ -10,6 +10,7 @@ class Front {
         add_action( 'wp_head', [ $this, 'head' ] );
         add_filter( 'directorist_template', [ $this, 'change_template' ], 20, 2 );
         add_filter( 'directorist_listings_query_results', [ $this, 'query_results' ], 999999, 1 );
+        add_filter( 'directorist_search_field_template', [ $this, 'search_template' ], 20, 2 );
     }
 
     public function head(){
@@ -17,6 +18,22 @@ class Front {
         // $selected = $_GET['country_expert']; 
         // $ids = explode(',', $selected); 
         // pri( $ids );
+    }
+    public function search_template( $template, $field_data ){
+
+        if ( 'search-form/fields/country_expert' == $template ) {
+        // pri( $template );
+            $template = DLF_PLUGIN_DIR . 'templates/search/country_expert.php';
+             if ( file_exists( $template ) ) {
+
+                dcf_load_template( $template, $field_data );
+                
+                return false;
+            }
+        }
+
+        return $template;
+
     }
 
     public function change_template( $template, $args ){
@@ -31,15 +48,15 @@ class Front {
             }
         }
 
-        if ( 'search-form/fields/country_expert' == $template ) {
-            $template = DLF_PLUGIN_DIR . 'templates/search/country_expert.php';
-             if ( file_exists( $template ) ) {
+        // if ( 'search-form/fields/country_expert' == $template ) {
+        //     $template = DLF_PLUGIN_DIR . 'templates/search/country_expert.php';
+        //      if ( file_exists( $template ) ) {
 
-                dcf_load_template( $template, $args );
+        //         dcf_load_template( $template, $args );
                 
-                return false;
-            }
-        }
+        //         return false;
+        //     }
+        // }
         return $template;
     }
 

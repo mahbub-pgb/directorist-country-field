@@ -22,10 +22,14 @@ if ( ! is_array( $value ) ) {
 
 <div class="directorist-search-field directorist-form-group">
     <div class="directorist-select directorist-search-field__input">
+    
 
-        <?php if ( ! empty( $data['label'] ) ) : ?>
+   
+       
+
+        <?php if ( ! empty($args['label'] ) ) : ?>
             <label class="directorist-search-field__label">
-                <?php echo esc_html( $data['label'] ); ?>
+                <?php echo esc_html($args['label'] ); ?>
             </label>
         <?php endif; ?>
 
