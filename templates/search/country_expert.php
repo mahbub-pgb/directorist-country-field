@@ -86,16 +86,17 @@ jQuery(document).ready(function($){
         let url = new URL(window.location.href);
 
         if(valueString.length > 0){
-            url.searchParams.set('country_expert', valueString); // update or add
+            url.searchParams.set('country_expert', valueString);
         } else {
-            url.searchParams.delete('country_expert'); // optional: remove if none selected
+            url.searchParams.delete('country_expert');
         }
 
-        // Reload page with updated URL
-        window.location.href = url.toString();
+        // ✅ Decode before reloading to remove %2C encoding
+        window.location.href = decodeURIComponent(url.toString());
     });
 });
 </script>
+
 
 
 
