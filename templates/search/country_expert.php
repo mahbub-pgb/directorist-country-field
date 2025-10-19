@@ -53,7 +53,7 @@ if ( ! is_array( $value ) ) {
 
 <script>
 jQuery(document).ready(function($){
-    const $select = $('select.directorist-search-select');
+    const $select = $('select.directorist-search-select[name="country_expert[country_expert][]"]');
 
     // Initialize select2 only once
     if(!$select.hasClass('select2-hidden-accessible')) {
