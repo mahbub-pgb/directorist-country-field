@@ -31,15 +31,25 @@ class Front {
             }
         }
 
-        if ( 'search-form/fields/country_expert' == $template ) {
-            $template = DLF_PLUGIN_DIR . 'templates/search/country_expert.php';
-             if ( file_exists( $template ) ) {
+        // if ( 'search-form/fields/country_expert' == $template ) {
+        //     $template = DLF_PLUGIN_DIR . 'templates/search/country_expert.php';
+        //      if ( file_exists( $template ) ) {
 
-                dcf_load_template( $template, $args );
+        //         dcf_load_template( $template, $args );
                 
-                return false;
-            }
-        }
+        //         return false;
+        //     }
+        // }
+
+        // if ( 'search-form/fields/language' == $template ) {
+        //     $template = DLF_PLUGIN_DIR . 'templates/search/language.php';
+        //      if ( file_exists( $template ) ) {
+
+        //         dcf_load_template( $template, $args );
+                
+        //         return false;
+        //     }
+        // }
         return $template;
     }
 
@@ -74,8 +84,34 @@ class Front {
                 }
 
             }
-            // If $_GET['country_expert'] is NOT set, do nothing
-            // Original $query_result is returned unchanged
+            
+            // Check if 'atbdp_language' is set in URL
+            if ( isset( $_GET['atbdp_language'] ) && ! empty( $_GET['atbdp_language'] ) ) {
+
+                $selected = sanitize_text_field( $_GET['atbdp_language'] );          // get string from URL
+                $ids = array_map( 'intval', explode( ',', $selected ) );             // convert to array of integers
+
+                // Filter the query_result->ids based on selected atbdp_language IDs
+                $filtered_ids = [];
+                foreach ( $query_result->ids as $post_id ) {
+                    $post_terms = wp_get_post_terms( $post_id, 'atbdp_language', ['fields' => 'ids'] );
+                    if ( array_intersect( $post_terms, $ids ) ) {
+                        $filtered_ids[] = $post_id;
+                    }
+                }
+
+                // Update query_result
+                $query_result->ids = array_values( $filtered_ids ); // reindex array
+                $query_result->total = count( $query_result->ids );
+
+                // Update total pages if using per_page
+                if ( ! empty( $query_result->per_page ) && $query_result->per_page > 0 ) {
+                    $query_result->total_pages = ceil( $query_result->total / $query_result->per_page );
+                } else {
+                    $query_result->total_pages = 1;
+                }
+
+            }
         }
 
         return $query_result;

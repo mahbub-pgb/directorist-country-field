@@ -31,6 +31,23 @@ class Admin {
             ],
         ];
 
+        $search_form_widgets['other_widgets']['widgets']['language'] = [
+            'label'   => __( 'Language', 'directorist' ),
+            'icon'    => 'las la-flag',
+            'options' => [
+                'label' => [
+                    'type'  => 'text',
+                    'label' => __( 'Label', 'directorist' ),
+                    'value' => __( 'Language', 'directorist' ),
+                ],
+                'placeholder' => [
+                    'type'  => 'text',
+                    'label' => __( 'Placeholder', 'directorist' ),
+                    'value' => __( 'Select Language', 'directorist' ),
+                ],
+            ],
+        ];
+
         return $search_form_widgets;
     }
 
