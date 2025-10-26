@@ -13,10 +13,12 @@ class Front {
     }
 
     public function head(){
+        $post_id = 3092;
+        $post_terms = wp_get_post_terms( $post_id, 'country_expert', ['fields' => 'ids'] );
 
         // $selected = $_GET['country_expert']; 
         // $ids = explode(',', $selected); 
-        // pri( $ids );
+        // pri( $post_terms );
     }
 
     public function change_template( $template, $args ){
@@ -53,45 +55,20 @@ class Front {
         return $template;
     }
 
-       public function query_results( $query_result ) {
-        // Ensure $query_result->ids exists and is an array
+    public function query_results( $query_result ) {
         if ( ! empty( $query_result->ids ) && is_array( $query_result->ids ) ) {
 
-            // Check if 'country_expert' is set in URL
+            // Filter by country_expert
             if ( isset( $_GET['country_expert'] ) && ! empty( $_GET['country_expert'] ) ) {
-
-                $selected = sanitize_text_field( $_GET['country_expert'] );       // get string from URL
-                $ids = array_map( 'intval', explode( ',', $selected ) );          // convert to array of integers
-
-                // Filter the query_result->ids based on selected country_expert IDs
-                $filtered_ids = [];
-                foreach ( $query_result->ids as $post_id ) {
-                    $post_terms = wp_get_post_terms( $post_id, 'country_expert', ['fields' => 'ids'] );
-                    if ( array_intersect( $post_terms, $ids ) ) {
-                        $filtered_ids[] = $post_id;
-                    }
-                }
-
-                // Update query_result
-                $query_result->ids = array_values( $filtered_ids ); // reindex array
-                $query_result->total = count( $query_result->ids );
-
-                // Update total pages if using per_page
-                if ( ! empty( $query_result->per_page ) && $query_result->per_page > 0 ) {
-                    $query_result->total_pages = ceil( $query_result->total / $query_result->per_page );
-                } else {
-                    $query_result->total_pages = 1;
-                }
-
+                $selected = sanitize_text_field( $_GET['country_expert'] );
+                $query_result->ids = get_at_biz_dir_ids_by_country( $selected );
             }
-            
-            // Check if 'atbdp_language' is set in URL
+
+            // Filter by atbdp_language
             if ( isset( $_GET['atbdp_language'] ) && ! empty( $_GET['atbdp_language'] ) ) {
+                $selected = sanitize_text_field( $_GET['atbdp_language'] );
+                $ids = array_map( 'intval', explode( ',', $selected ) );
 
-                $selected = sanitize_text_field( $_GET['atbdp_language'] );          // get string from URL
-                $ids = array_map( 'intval', explode( ',', $selected ) );             // convert to array of integers
-
-                // Filter the query_result->ids based on selected atbdp_language IDs
                 $filtered_ids = [];
                 foreach ( $query_result->ids as $post_id ) {
                     $post_terms = wp_get_post_terms( $post_id, 'atbdp_language', ['fields' => 'ids'] );
@@ -100,22 +77,20 @@ class Front {
                     }
                 }
 
-                // Update query_result
-                $query_result->ids = array_values( $filtered_ids ); // reindex array
-                $query_result->total = count( $query_result->ids );
-
-                // Update total pages if using per_page
-                if ( ! empty( $query_result->per_page ) && $query_result->per_page > 0 ) {
-                    $query_result->total_pages = ceil( $query_result->total / $query_result->per_page );
-                } else {
-                    $query_result->total_pages = 1;
-                }
-
+                $query_result->ids = $filtered_ids;
             }
+
+            // Update totals after filtering
+            $query_result->ids = array_values( $query_result->ids );
+            $query_result->total = count( $query_result->ids );
+            $query_result->total_pages = ! empty( $query_result->per_page ) && $query_result->per_page > 0
+                ? ceil( $query_result->total / $query_result->per_page )
+                : 1;
         }
 
         return $query_result;
     }
+
 
 
 
