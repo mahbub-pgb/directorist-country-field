@@ -15,39 +15,43 @@ if ( ! function_exists( 'pri' ) ) {
  * @param string|array $country_ids Comma-separated string or array of term IDs.
  * @return array Filtered post IDs.
  */
-function get_at_biz_dir_ids_by_country( $country_ids ) {
-    // Ensure we have an array of integers
-    if ( is_string( $country_ids ) ) {
-        $country_ids = array_map( 'intval', explode( ',', $country_ids ) );
-    } elseif ( is_array( $country_ids ) ) {
-        $country_ids = array_map( 'intval', $country_ids );
-    } else {
-        return []; // Invalid input
-    }
 
-    if ( empty( $country_ids ) ) {
-        return []; // No country selected
-    }
-
-    // Get all 'at_biz_dir' posts
-    $all_posts = get_posts([
-        'post_type'      => 'at_biz_dir',
-        'posts_per_page' => -1,
-        'fields'         => 'ids', // Only get IDs
-        'post_status'    => 'publish',
-    ]);
-
-    // Filter by country_expert terms
-    $filtered_ids = [];
-    foreach ( $all_posts as $post_id ) {
-        $post_terms = wp_get_post_terms( $post_id, 'country_expert', ['fields' => 'ids'] );
-        if ( array_intersect( $post_terms, $country_ids ) ) {
-            $filtered_ids[] = $post_id;
+if ( ! function_exists( 'get_at_biz_dir_ids_by_country' ) ) {
+    function get_at_biz_dir_ids_by_country( $country_ids ) {
+        // Ensure we have an array of integers
+        if ( is_string( $country_ids ) ) {
+            $country_ids = array_map( 'intval', explode( ',', $country_ids ) );
+        } elseif ( is_array( $country_ids ) ) {
+            $country_ids = array_map( 'intval', $country_ids );
+        } else {
+            return []; // Invalid input
         }
-    }
 
-    return $filtered_ids;
+        if ( empty( $country_ids ) ) {
+            return []; // No country selected
+        }
+
+        // Get all 'at_biz_dir' posts
+        $all_posts = get_posts([
+            'post_type'      => 'at_biz_dir',
+            'posts_per_page' => -1,
+            'fields'         => 'ids', // Only get IDs
+            'post_status'    => 'publish',
+        ]);
+
+        // Filter by country_expert terms
+        $filtered_ids = [];
+        foreach ( $all_posts as $post_id ) {
+            $post_terms = wp_get_post_terms( $post_id, 'country_expert', ['fields' => 'ids'] );
+            if ( array_intersect( $post_terms, $country_ids ) ) {
+                $filtered_ids[] = $post_id;
+            }
+        }
+
+        return $filtered_ids;
+    }
 }
+
 
 if ( ! function_exists( 'dcf_load_template' ) ) {
     /**

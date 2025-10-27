@@ -62,6 +62,8 @@ class Front {
             if ( isset( $_GET['country_expert'] ) && ! empty( $_GET['country_expert'] ) ) {
                 $selected = sanitize_text_field( $_GET['country_expert'] );
                 $query_result->ids = get_at_biz_dir_ids_by_country( $selected );
+
+                pri( $selected );
             }
 
             // Filter by atbdp_language
