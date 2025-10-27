@@ -13,8 +13,7 @@ class Front {
     }
 
     public function head(){
-        $post_id = 3092;
-        $post_terms = wp_get_post_terms( $post_id, 'country_expert', ['fields' => 'ids'] );
+        
 
         // $selected = $_GET['country_expert']; 
         // $ids = explode(',', $selected); 
@@ -62,8 +61,6 @@ class Front {
             if ( isset( $_GET['country_expert'] ) && ! empty( $_GET['country_expert'] ) ) {
                 $selected = sanitize_text_field( $_GET['country_expert'] );
                 $query_result->ids = get_at_biz_dir_ids_by_country( $selected );
-
-                pri( $selected );
             }
 
             // Filter by atbdp_language
