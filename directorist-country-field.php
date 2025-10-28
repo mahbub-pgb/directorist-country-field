@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: Directorist country Field
+ * Plugin Name: Directorist Country Field
  * Description: Adds ISO 639-1 country selector to Directorist listings.
  * Version: 1.1.0
  * Author: Mahbub
@@ -16,19 +16,16 @@ define( 'DLF_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'DLF_PLUGIN_FILE', __FILE__ );
 
 // Load Composer autoloader
-if ( file_exists( DLF_PLUGIN_DIR . 'vendor/autoload.php' ) ) {
-    require_once DLF_PLUGIN_DIR . 'vendor/autoload.php';
-} else {
-    // fallback for non-composer environments
-    require_once DLF_PLUGIN_DIR . 'functions.php';
-}
+require_once DLF_PLUGIN_DIR . 'vendor/autoload.php';
 
-// Manual fallback for servers without composer autoload
-if ( ! class_exists( 'DLF\Loader' ) && file_exists( DLF_PLUGIN_DIR . 'includes/Loader.php' ) ) {
-    require_once DLF_PLUGIN_DIR . 'includes/Loader.php';
-}
-
+// Initialize plugin after WordPress loads
 add_action( 'plugins_loaded', function() {
-    new DLF\Loader();
-});
 
+    new DLF\Common();
+
+    if ( is_admin() ) {
+        new DLF\Admin();
+    } else {
+        new DLF\Front();
+    }
+});
