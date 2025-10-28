@@ -46,7 +46,19 @@ class Common {
     }
     public function change_template( $template, $args ){
 
- 
+        // pri( $template );
+
+
+        if ( 'listing-form/fields/country_expert' == $template ) {
+            $template = DLF_PLUGIN_DIR . 'templates/country_expert.php';
+             if ( file_exists( $template ) ) {
+
+                dcf_load_template( $template, $args );
+                
+                return false;
+            }
+        }
+
         if ( 'search-form/fields/country_expert' == $template ) {
             $template = DLF_PLUGIN_DIR . 'templates/search/country_expert.php';
              
