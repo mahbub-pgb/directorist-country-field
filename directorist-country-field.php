@@ -23,6 +23,12 @@ if ( file_exists( DLF_PLUGIN_DIR . 'vendor/autoload.php' ) ) {
     require_once DLF_PLUGIN_DIR . 'functions.php';
 }
 
+// Manual fallback for servers without composer autoload
+if ( ! class_exists( 'DLF\Loader' ) && file_exists( DLF_PLUGIN_DIR . 'includes/Loader.php' ) ) {
+    require_once DLF_PLUGIN_DIR . 'includes/Loader.php';
+}
+
 add_action( 'plugins_loaded', function() {
     new DLF\Loader();
 });
+
