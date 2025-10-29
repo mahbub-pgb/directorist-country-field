@@ -17,11 +17,11 @@ class Front {
 
         // $selected = $_GET['country_expert']; 
         // $ids = explode(',', $selected); 
-        // pri( $post_terms );
+        // dlf_pri( $post_terms );
     }
 
     public function change_template( $template, $args ){
-        // pri( $template );
+        // dlf_pri( $template );
         if ( 'single/fields/country_expert' == $template ) {
             $template = DLF_PLUGIN_DIR . 'templates/single/country_expert.php';
              if ( file_exists( $template ) ) {
@@ -42,15 +42,15 @@ class Front {
         //     }
         // }
 
-        // if ( 'search-form/fields/language' == $template ) {
-        //     $template = DLF_PLUGIN_DIR . 'templates/search/language.php';
-        //      if ( file_exists( $template ) ) {
+        if ( 'search-form/fields/language' == $template ) {
+            $template = DLF_PLUGIN_DIR . 'templates/search/language.php';
+             if ( file_exists( $template ) ) {
 
-        //         dcf_load_template( $template, $args );
+                dcf_load_template( $template, $args );
                 
-        //         return false;
-        //     }
-        // }
+                return false;
+            }
+        }
         return $template;
     }
 
