@@ -16,7 +16,7 @@ define( 'DLF_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'DLF_PLUGIN_FILE', __FILE__ );
 
 // Load Composer autoloader
-require_once DLF_PLUGIN_DIR . 'vendor/autoload.php';
+require_once 'vendor/autoload.php';
 
 // Initialize plugin after WordPress loads
 add_action( 'plugins_loaded', function() {
