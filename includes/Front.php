@@ -8,7 +8,6 @@ class Front {
     public function __construct() {
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_assets' ] );
         add_action( 'wp_head', [ $this, 'head' ] );
-        add_filter( 'directorist_template', [ $this, 'change_template' ], 20, 2 );
         add_filter( 'directorist_listings_query_results', [ $this, 'query_results' ], 999999, 1 );
     }
 
@@ -20,39 +19,7 @@ class Front {
         // pri( $post_terms );
     }
 
-    public function change_template( $template, $args ){
-        // pri( $template );
-        if ( 'single/fields/country_expert' == $template ) {
-            $template = DLF_PLUGIN_DIR . 'templates/single/country_expert.php';
-             if ( file_exists( $template ) ) {
-
-                dcf_load_template( $template, $args );
-                
-                return false;
-            }
-        }
-
-        // if ( 'search-form/fields/country_expert' == $template ) {
-        //     $template = DLF_PLUGIN_DIR . 'templates/search/country_expert.php';
-        //      if ( file_exists( $template ) ) {
-
-        //         dcf_load_template( $template, $args );
-                
-        //         return false;
-        //     }
-        // }
-
-        // if ( 'search-form/fields/language' == $template ) {
-        //     $template = DLF_PLUGIN_DIR . 'templates/search/language.php';
-        //      if ( file_exists( $template ) ) {
-
-        //         dcf_load_template( $template, $args );
-                
-        //         return false;
-        //     }
-        // }
-        return $template;
-    }
+   
 
     public function query_results( $query_result ) {
         if ( ! empty( $query_result->ids ) && is_array( $query_result->ids ) ) {
