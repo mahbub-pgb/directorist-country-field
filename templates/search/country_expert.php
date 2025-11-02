@@ -36,7 +36,7 @@ if ( ! is_array( $value ) ) {
     class="directorist-search-select js-country-expert-select"
     data-isSearch="true"
     multiple="multiple"
-    data-placeholder="<?php echo esc_attr( ! empty( $data['placeholder'] ) ? $data['placeholder'] : __( 'Select Country', 'directorist' ) ); ?>"
+    data-placeholder="Select Country"
     style="width: 100%;">
 
             <?php if ( ! empty( $data['placeholder'] ) ) : ?>
