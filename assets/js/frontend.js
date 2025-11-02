@@ -1,12 +1,13 @@
 jQuery(document).ready(function($){
     $('#country_expert_select').select2({
-        placeholder: $(this).data('placeholder'),
+        placeholder: $('#country_expert_select').data('placeholder'),
         allowClear: true,
         width: '100%'
     });
 
-    // fully reset select on clear button click
-    $('#country_expert_select').on('select2:clear', function(){
-        $(this).val(null).trigger('change');
+    // Clear button functionality
+    $('.directorist-search-field__btn--clear').on('click', function(){
+        var $select = $(this).closest('.directorist-search-field').find('select');
+        $select.val(null).trigger('change');
     });
 });
