@@ -31,18 +31,13 @@ if ( ! is_array( $value ) ) {
         <?php endif; ?>
 
         <select 
-    id="country_expert_select"
-    name="custom_field[<?php echo esc_attr( $data['widget_name'] ); ?>][]" 
-    class="directorist-search-select js-country-expert-select"
-    data-isSearch="true"
-    multiple="multiple"
-    data-placeholder="Select Country"
-    style="width: 100%;">
-
-            <?php if ( ! empty( $data['placeholder'] ) ) : ?>
-                <option value=""><?php echo esc_html( $data['placeholder'] ); ?></option>
-            <?php endif; ?>
-
+            id="country_expert_select"
+            name="custom_field[<?php echo esc_attr( $data['widget_name'] ); ?>][]" 
+            class="directorist-search-select js-country-expert-select"
+            data-isSearch="true"
+            multiple="multiple"
+            data-placeholder="Select Country"
+            style="width: 100%;">
             <?php if ( ! empty( $all_countries ) && ! is_wp_error( $all_countries ) ) : ?>
                 <?php foreach ( $all_countries as $country ) : ?>
                     <option value="<?php echo esc_attr( $country->term_id ); ?>" 
@@ -51,7 +46,6 @@ if ( ! is_array( $value ) ) {
                     </option>
                 <?php endforeach; ?>
             <?php endif; ?>
-
         </select>
 
     </div>
@@ -62,14 +56,5 @@ if ( ! is_array( $value ) ) {
 
 </div>
 
-<script>
-jQuery(document).ready(function($){
-    $('.directorist-search-select').each(function(){
-        $(this).select2({
-            placeholder: $(this).data('placeholder'),
-            allowClear: true,
-            width: '100%'
-        });
-    });
-});
-</script>
+
+
