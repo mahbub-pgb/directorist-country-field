@@ -7,25 +7,40 @@
  * Text Domain: directorist-country-field
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
+if ( ! defined( 'ABSPATH' ) ) exit;
 
 define( 'DLF_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'DLF_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 define( 'DLF_PLUGIN_FILE', __FILE__ );
 
-// Load Composer autoloader
-require_once 'vendor/autoload.php';
+// ----------------------------
+// Load Composer autoloader safely
+// ----------------------------
+$autoload_path = DLF_PLUGIN_DIR . 'vendor/autoload.php';
+if ( file_exists( $autoload_path ) ) {
+    include $autoload_path; // safe include
+} else {
+    // Optional: log missing autoload
+    if ( defined('WP_DEBUG') && WP_DEBUG ) {
+        error_log('DLF: vendor/autoload.php not found.');
+    }
+}
 
+// ----------------------------
 // Initialize plugin after WordPress loads
+// ----------------------------
 add_action( 'plugins_loaded', function() {
 
-    new DLF\Common();
+    if ( class_exists( 'DLF\Common' ) ) {
+        new DLF\Common();
+    }
 
-    if ( is_admin() ) {
+    if ( is_admin() && class_exists( 'DLF\Admin' ) ) {
         new DLF\Admin();
-    } else {
+    }
+
+    if ( ! is_admin() && class_exists( 'DLF\Front' ) ) {
         new DLF\Front();
     }
+
 });

@@ -19,6 +19,8 @@ class Common {
     public function load_plugin(  ){
         if ( ! class_exists( 'Directorist_Fields' ) ) return;
 
+        require_once DLI_PATH . 'includes/class-directorist-country-field.php';
+
         add_filter( 'directorist_field_types', function ( $fields ) {
             $fields['country_expert'] = 'Directorist_Country_Expert_Field';
             return $fields;
