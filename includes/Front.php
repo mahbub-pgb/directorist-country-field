@@ -12,11 +12,6 @@ class Front {
     }
 
     public function head(){
-        
-
-        // $selected = $_GET['country_expert']; 
-        // $ids = explode(',', $selected); 
-        // pri( $post_terms );
     }
 
    
