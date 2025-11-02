@@ -21,7 +21,7 @@ $language = wp_list_pluck( $selected_language, 'name' );
 <div class="directorist-country-expert-list" style="font-size: inherit; color: inherit; display: flex; align-items: center; gap: 6px;">
     <!-- Font Awesome SVG icon using Directorist icon mask -->
     <div class="directorist-country-expert-icon">
-        <i class="fa-solid fa-globe"></i>
+        <i class="fa-solid fa-language"></i>
     </div>
 
    <?php echo $title . ' :' ?>
