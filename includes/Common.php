@@ -198,7 +198,7 @@ class Common {
             $languages = array_map( 'intval', $languages );
 
             wp_set_object_terms( $post_id, $languages, 'dl_language', false );
-            update_post_meta( $post_id, '_dl_language', $languages );
+            update_post_meta( $post_id, '_language', $languages );
         }
     }
 
