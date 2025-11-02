@@ -79,15 +79,15 @@ class Common {
             }
         }
 
-        // if ( 'search-form/fields/language' == $template ) {
-        //     $template = DLF_PLUGIN_DIR . 'templates/search/language.php';
-        //      if ( file_exists( $template ) ) {
+        if ( 'search-form/fields/language' == $template ) {
+            $template = DLF_PLUGIN_DIR . 'templates/search/language.php';
+             if ( file_exists( $template ) ) {
 
-        //         dcf_load_template( $template, $args );
+                dcf_load_template( $template, $args );
                 
-        //         return false;
-        //     }
-        // }
+                return false;
+            }
+        }
         return $template;
 
     }
