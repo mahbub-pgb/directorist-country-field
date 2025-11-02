@@ -3,7 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 // Fetch all languages (terms)
 $all_lang_terms = get_terms([
-    'taxonomy'   => 'atbdp_language',
+    'taxonomy'   => 'dl_language',
     'hide_empty' => false,
     'orderby'    => 'name',
     'order'      => 'ASC',
@@ -23,8 +23,8 @@ if ( ! is_array( $value ) ) {
 $query_values = [];
 
 // Normal $_GET handling
-if ( isset( $_GET['atbdp_language']['atbdp_language'] ) ) {
-    $raw = $_GET['atbdp_language']['atbdp_language'];
+if ( isset( $_GET['dl_language']['dl_language'] ) ) {
+    $raw = $_GET['dl_language']['dl_language'];
     if ( is_array( $raw ) ) {
         $query_values = array_map( 'sanitize_text_field', $raw );
     } else {
@@ -38,7 +38,7 @@ if ( isset( $_GET['atbdp_language']['atbdp_language'] ) ) {
 // Also parse raw QUERY_STRING to catch repeated keys without []
 if ( isset( $_SERVER['QUERY_STRING'] ) && $_SERVER['QUERY_STRING'] !== '' ) {
     if ( preg_match_all(
-        '/(?:^|&)(?:atbdp_language%5Batbdp_language%5D(?:%5B%5D)?)=([^&]+)/',
+        '/(?:^|&)(?:dl_language%5Bdl_language%5D(?:%5B%5D)?)=([^&]+)/',
         $_SERVER['QUERY_STRING'],
         $m
     ) ) {
@@ -53,7 +53,7 @@ if ( ! empty( $query_values ) ) {
     $value = array_values( array_unique( array_merge( $value, $query_values ) ) );
 }
 
-$widget_name = $data['widget_name'] ?? 'atbdp_language';
+$widget_name = $data['widget_name'] ?? 'dl_language';
 $label       = $data['label'] ?? '';
 $placeholder = ! empty( $data['placeholder'] ) ? $data['placeholder'] : __( 'Select Language', 'directorist' );
 ?>
@@ -66,7 +66,7 @@ $placeholder = ! empty( $data['placeholder'] ) ? $data['placeholder'] : __( 'Sel
             </label>
         <?php endif; ?>
 
-        <select id="atbdp_language_select" name="custom_field[<?php echo esc_attr( $widget_name ); ?>][]" 
+        <select id="dl_language_select" name="custom_field[<?php echo esc_attr( $widget_name ); ?>][]" 
                 class="directorist-search-select" 
                 data-isSearch="true" 
                 data-placeholder="<?php echo esc_attr( $placeholder ); ?>" 

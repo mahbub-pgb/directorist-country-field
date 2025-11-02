@@ -40,7 +40,7 @@ class Common {
 
     public function change_template( $template, $args ){
 
-        // pri( $template );
+        // dlf_pri( $template );
 
 
         if ( 'listing-form/fields/country_expert' == $template ) {
@@ -53,8 +53,28 @@ class Common {
             }
         }
 
+        if ( 'listing-form/fields/language' == $template ) {
+            $template = DLF_PLUGIN_DIR . 'templates/language.php';
+             if ( file_exists( $template ) ) {
+
+                dcf_load_template( $template, $args );
+                
+                return false;
+            }
+        }
+
         if ( 'single/fields/country_expert' == $template ) {
             $template = DLF_PLUGIN_DIR . 'templates/single/country_expert.php';
+             if ( file_exists( $template ) ) {
+
+                dcf_load_template( $template, $args );
+                
+                return false;
+            }
+        }
+
+        if ( 'single/fields/language' == $template ) {
+            $template = DLF_PLUGIN_DIR . 'templates/single/language.php';
              if ( file_exists( $template ) ) {
 
                 dcf_load_template( $template, $args );
@@ -167,18 +187,18 @@ class Common {
          * Save Language Field
          * --------------------------
          */
-        if ( isset( $_POST['atbdp_language'] ) ) {
-            $languages = (array) $_POST['atbdp_language'];
+        if ( isset( $_POST['dl_language'] ) ) {
+            $languages = (array) $_POST['dl_language'];
 
-            // Handle nested array: atbdp_language[atbdp_language][]
-            if ( isset( $languages['atbdp_language'] ) && is_array( $languages['atbdp_language'] ) ) {
-                $languages = $languages['atbdp_language'];
+            // Handle nested array: dl_language[dl_language][]
+            if ( isset( $languages['dl_language'] ) && is_array( $languages['dl_language'] ) ) {
+                $languages = $languages['dl_language'];
             }
 
             $languages = array_map( 'intval', $languages );
 
-            wp_set_object_terms( $post_id, $languages, 'atbdp_language', false );
-            update_post_meta( $post_id, '_atbdp_language', $languages );
+            wp_set_object_terms( $post_id, $languages, 'dl_language', false );
+            update_post_meta( $post_id, '_dl_language', $languages );
         }
     }
 

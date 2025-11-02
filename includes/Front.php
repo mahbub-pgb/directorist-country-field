@@ -8,7 +8,7 @@ class Front {
     public function __construct() {
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_assets' ] );
         add_action( 'wp_head', [ $this, 'head' ] );
-        add_filter( 'directorist_listings_query_results', [ $this, 'query_results' ], 999999, 1 );
+     
     }
 
     public function head(){
@@ -21,41 +21,6 @@ class Front {
 
    
 
-    public function query_results( $query_result ) {
-        if ( ! empty( $query_result->ids ) && is_array( $query_result->ids ) ) {
-
-            // Filter by country_expert
-            if ( isset( $_GET['country_expert'] ) && ! empty( $_GET['country_expert'] ) ) {
-                $selected = sanitize_text_field( $_GET['country_expert'] );
-                $query_result->ids = get_at_biz_dir_ids_by_country( $selected );
-            }
-
-            // Filter by atbdp_language
-            if ( isset( $_GET['atbdp_language'] ) && ! empty( $_GET['atbdp_language'] ) ) {
-                $selected = sanitize_text_field( $_GET['atbdp_language'] );
-                $ids = array_map( 'intval', explode( ',', $selected ) );
-
-                $filtered_ids = [];
-                foreach ( $query_result->ids as $post_id ) {
-                    $post_terms = wp_get_post_terms( $post_id, 'atbdp_language', ['fields' => 'ids'] );
-                    if ( array_intersect( $post_terms, $ids ) ) {
-                        $filtered_ids[] = $post_id;
-                    }
-                }
-
-                $query_result->ids = $filtered_ids;
-            }
-
-            // Update totals after filtering
-            $query_result->ids = array_values( $query_result->ids );
-            $query_result->total = count( $query_result->ids );
-            $query_result->total_pages = ! empty( $query_result->per_page ) && $query_result->per_page > 0
-                ? ceil( $query_result->total / $query_result->per_page )
-                : 1;
-        }
-
-        return $query_result;
-    }
 
 
 
