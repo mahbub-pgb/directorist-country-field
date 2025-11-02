@@ -13,7 +13,6 @@ class Common {
         add_action( 'init', [ $this ,'register_country_taxonomy'], 20 );
         add_filter( 'directorist_template', [ $this, 'change_template' ], 20, 2 );
         add_filter( 'plugins_loaded', [ $this, 'load_plugin' ], 10, 2 );
-        add_action( 'atbdp_before_listing_update', [$this, 'register_country_field'] );
     }
 
 
@@ -39,11 +38,6 @@ class Common {
         });
     }
 
-    public function register_country_field( $listing_id ){
-        if ( empty( $_POST['country_expert'] ) ) {
-            wp_set_object_terms( $listing_id, [], 'country_expert', false );
-        }
-    }
     public function change_template( $template, $args ){
 
         // pri( $template );
@@ -120,6 +114,33 @@ class Common {
             ]
         );
         add_all_countries_to_country_expert();
+
+        register_taxonomy(
+        'dl_language', // taxonomy slug
+        'at_biz_dir',     // post type
+            [
+                'labels' => [
+                    'name'              => 'Languages',
+                    'singular_name'     => 'Language',
+                    'search_items'      => 'Search Languages',
+                    'all_items'         => 'All Languages',
+                    'edit_item'         => 'Edit Language',
+                    'update_item'       => 'Update Language',
+                    'add_new_item'      => 'Add New Language',
+                    'new_item_name'     => 'New Language Name',
+                    'menu_name'         => 'Directory Languages',
+                ],
+                'hierarchical'      => false, // false like tags, true like categories
+                'show_ui'           => true,
+                'show_admin_column' => false,
+                'show_in_rest'      => false,
+                'public'            => true,
+                'rewrite'           => [ 'slug' => 'language' ],
+            ]
+        );
+
+        add_all_language_to_dl_language();
+
     }   
 
     public function save_country_expert_field( $post_id, $post, $update ) {
