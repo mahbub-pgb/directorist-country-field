@@ -7,7 +7,7 @@ class Admin {
 
     public function __construct() {
         add_action( 'admin_enqueue_scripts', [ $this, 'enqueue_assets' ] );
-        add_filter( 'atbdp_form_custom_widgets', [ $this, 'register_country_field' ] );
+        add_filter( 'atbdp_form_custom_widgets', [ $this, 'register_country_and_language_fields' ] );
         add_filter( 'atbdp_single_listing_other_fields_widget', [ $this, 'register_country_expert_widget_single_content' ] );
         add_filter( 'directorist_search_form_widgets', [ $this, 'directorist_search_form_widgets' ] );
     }
@@ -33,7 +33,7 @@ class Admin {
 
         $search_form_widgets['other_widgets']['widgets']['language'] = [
             'label'   => __( 'Language', 'directorist' ),
-            'icon'    => 'las la-flag',
+            'icon'    => 'las la-language',
             'options' => [
                 'label' => [
                     'type'  => 'text',
@@ -75,35 +75,55 @@ class Admin {
             ],
         ];
 
+        $widgets['language'] = [
+            'type'          => 'widget',
+            'label'         => __( 'language', 'directorist-country-field' ),
+            'icon'          =>  'las la-language', // Any line-awesome icon
+            'allowMultiple' => false,
+            'options'       => [
+                'label' => [
+                    'type'  => 'text',
+                    'label' => __( 'Label', 'directorist-country-field' ),
+                    'value' => __( 'language', 'directorist-country-field' ),
+                ],
+                'placeholder' => [
+                    'type'  => 'text',
+                    'label' => __( 'Placeholder', 'directorist-country-field' ),
+                    'value' => __( 'Selected language', 'directorist-country-field' ),
+                ],
+            ],
+        ];
+
         return $widgets;
     }
 
     /**
      * Register custom fields for Directorist form
      */
-    public function register_country_field( $fields ) {
+    public function register_country_and_language_fields( $fields ) {
 
         global $custom_field_meta_key_field;
         if ( empty( $custom_field_meta_key_field ) || ! is_array( $custom_field_meta_key_field ) ) {
             $custom_field_meta_key_field = [];
         }
 
-        // 🔹 Fetch countries from taxonomy
+        // --------------------------
+        // 🔹 Country Expert Field
+        // --------------------------
         $countries = get_terms([
             'taxonomy'   => 'country_expert',
             'hide_empty' => false,
         ]);
 
-        $options = [];
+        $country_options = [];
         if ( ! is_wp_error( $countries ) && ! empty( $countries ) ) {
             foreach ( $countries as $country ) {
-                $options[ $country->term_id ] = $country->name;
+                $country_options[ $country->term_id ] = $country->name;
             }
         } else {
-            $options = [ '' => __( 'No countries found', 'directorist-country-field' ) ];
+            $country_options = [ '' => __( 'No countries found', 'directorist-country-field' ) ];
         }
 
-        // 🔹 Add the Country Expert field
         $fields['country_expert'] = [
             'label'   => __( 'Country Expert', 'directorist-country-field' ),
             'icon'    => 'las la-globe',
@@ -124,7 +144,7 @@ class Admin {
                 'options' => [
                     'type'     => 'select',
                     'label'    => __( 'Available Countries', 'directorist-country-field' ),
-                    'options'  => $options,
+                    'options'  => $country_options,
                     'multiple' => true,
                 ],
                 'required' => [
@@ -137,28 +157,65 @@ class Admin {
                     'label' => __( 'Admin Only', 'directorist-country-field' ),
                     'value' => false,
                 ],
-                // 'assign_to' => [
-                //     'type'  => 'toggle',
-                //     'label' => __( 'Assign to Category', 'directorist-country-field' ),
-                //     'value' => false,
-                // ],
-                // 'category' => get_country_options([
-                //     'show_if' => [
-                //         'where' => "self.assign_to",
-                //         'conditions' => [
-                //             [
-                //                 'key'     => 'value',
-                //                 'compare' => '=',
-                //                 'value'   => true,
-                //             ],
-                //         ],
-                //     ],
-                // ]),
+            ],
+        ];
+
+        // --------------------------
+        // 🔹 Language Field
+        // --------------------------
+        $languages = get_terms([
+            'taxonomy'   => 'language',
+            'hide_empty' => false,
+        ]);
+
+        $language_options = [];
+        if ( ! is_wp_error( $languages ) && ! empty( $languages ) ) {
+            foreach ( $languages as $lang ) {
+                $language_options[ $lang->term_id ] = $lang->name;
+            }
+        } else {
+            $language_options = [ '' => __( 'No languages found', 'directorist-language-field' ) ];
+        }
+
+        $fields['language'] = [
+            'label'   => __( 'Language', 'directorist-language-field' ),
+            'icon'    => 'las la-language',
+            'options' => [
+                'type' => [
+                    'type'  => 'hidden',
+                    'value' => 'language',
+                ],
+                'field_key' => array_merge(
+                    $custom_field_meta_key_field,
+                    [ 'value' => 'custom-language-field' ]
+                ),
+                'label' => [
+                    'type'  => 'text',
+                    'label' => __( 'Label', 'directorist-language-field' ),
+                    'value' => __( 'Language', 'directorist-language-field' ),
+                ],
+                'options' => [
+                    'type'     => 'select',
+                    'label'    => __( 'Available Languages', 'directorist-language-field' ),
+                    'options'  => $language_options,
+                    'multiple' => true,
+                ],
+                'required' => [
+                    'type'  => 'toggle',
+                    'label' => __( 'Required', 'directorist-language-field' ),
+                    'value' => false,
+                ],
+                'only_for_admin' => [
+                    'type'  => 'toggle',
+                    'label' => __( 'Admin Only', 'directorist-language-field' ),
+                    'value' => false,
+                ],
             ],
         ];
 
         return $fields;
     }
+
 
     /**
      * Enqueue admin assets

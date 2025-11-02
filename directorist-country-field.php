@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Directorist Country Field
  * Description: Adds ISO 639-1 country selector to Directorist listings.
- * Version: 1.1.0
+ * Version: 1.1.2
  * Author: Mahbub
  * Text Domain: directorist-country-field
  */
@@ -31,6 +31,7 @@ add_action( 'plugins_loaded', function() {
 
     if ( class_exists( 'DLF\Common' ) ) {
         new DLF\Common();
+
     }
 
     if ( is_admin() && class_exists( 'DLF\Admin' ) ) {
@@ -45,4 +46,8 @@ add_action( 'plugins_loaded', function() {
     if ( class_exists( 'DLF\Directorist_Country_Field' ) ) {
         new DLF\Directorist_Country_Field();
     }
+
+  
+  
+
 });

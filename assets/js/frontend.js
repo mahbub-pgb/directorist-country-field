@@ -1,18 +1,22 @@
-jQuery(document).ready(function($) {
-    $('.directorist-btn-reset-ajax').on('click', function(e) {
-        e.preventDefault();
 
-        // Find all Directorist Select2 fields
-        $('.directorist-search-select').each(function() {
-            const $select = $(this);
+jQuery(document).ready(function($){
+    var $select = $('#country_expert_select');
 
-            // Clear all values (works for single & multiple)
-            $select.val(null).trigger('change.select2');
-
-            // Force clear the rendered tags (visual reset)
-            const container = $select.next('.select2');
-            container.find('.select2-selection__choice').remove();
-            container.find('.select2-selection__rendered').empty();
+    // Initialize Select2 only if available
+    if ( $.fn.select2 ) {
+        $select.select2({
+            placeholder: $select.data('placeholder'),
+            allowClear: true,
+            width: '100%'
         });
+    }
+
+    // Clear button behavior (click + keyboard)
+    var $clearBtn = $('.directorist-search-field__btn--clear');
+    $clearBtn.on('click keypress', function(e){
+        if (e.type === 'click' || (e.type === 'keypress' && (e.key === 'Enter' || e.key === ' '))) {
+            $select.val(null).trigger('change');
+        }
     });
 });
+

@@ -8,16 +8,10 @@ class Front {
     public function __construct() {
         add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_assets' ] );
         add_action( 'wp_head', [ $this, 'head' ] );
-        add_filter( 'directorist_template', [ $this, 'change_template' ], 20, 2 );
-        add_filter( 'directorist_listings_query_results', [ $this, 'query_results' ], 999999, 1 );
+     
     }
 
-    public function head(){
-        
-
-        // $selected = $_GET['country_expert']; 
-        // $ids = explode(',', $selected); 
-        // dlf_pri( $post_terms );
+    public function head(){      
     }
 
     public function change_template( $template, $args ){

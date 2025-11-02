@@ -9,11 +9,10 @@ class Common {
         // Register custom taxonomy
 
         // Save taxonomy terms when listing is inserted or updated
-        add_action( 'save_post', [ $this, 'save_countries' ] );
+        add_action( 'save_post_at_biz_dir', [ $this, 'save_country_expert_field' ], 100, 3 );
         add_action( 'init', [ $this ,'register_country_taxonomy'], 20 );
         add_filter( 'directorist_template', [ $this, 'change_template' ], 20, 2 );
         add_filter( 'plugins_loaded', [ $this, 'load_plugin' ], 10, 2 );
-        add_action( 'atbdp_before_listing_update', [$this, 'register_country_field'] );
     }
 
 
@@ -39,14 +38,9 @@ class Common {
         });
     }
 
-    public function register_country_field( $listing_id ){
-        if ( empty( $_POST['country_expert'] ) ) {
-            wp_set_object_terms( $listing_id, [], 'country_expert', false );
-        }
-    }
     public function change_template( $template, $args ){
 
-        // pri( $template );
+        // dlf_pri( $template );
 
 
         if ( 'listing-form/fields/country_expert' == $template ) {
@@ -64,6 +58,52 @@ class Common {
              
              if ( file_exists( $template ) ) {
              dcf_load_template( $template, $args );
+
+        if ( 'listing-form/fields/language' == $template ) {
+            $template = DLF_PLUGIN_DIR . 'templates/language.php';
+             if ( file_exists( $template ) ) {
+
+                dcf_load_template( $template, $args );
+                
+                return false;
+            }
+        }
+
+        if ( 'single/fields/country_expert' == $template ) {
+            $template = DLF_PLUGIN_DIR . 'templates/single/country_expert.php';
+             if ( file_exists( $template ) ) {
+
+                dcf_load_template( $template, $args );
+                
+                return false;
+            }
+        }
+
+        if ( 'single/fields/language' == $template ) {
+            $template = DLF_PLUGIN_DIR . 'templates/single/language.php';
+             if ( file_exists( $template ) ) {
+
+                dcf_load_template( $template, $args );
+                
+                return false;
+            }
+        }
+
+        if ( 'search-form/fields/country_expert' == $template ) {
+            $template = DLF_PLUGIN_DIR . 'templates/search/country_expert.php';
+             if ( file_exists( $template ) ) {
+
+                dcf_load_template( $template, $args );
+                
+                return false;
+            }
+        }
+
+        if ( 'search-form/fields/language' == $template ) {
+            $template = DLF_PLUGIN_DIR . 'templates/search/language.php';
+             if ( file_exists( $template ) ) {
+
+                dcf_load_template( $template, $args );
                 
                 return false;
             }
@@ -100,23 +140,73 @@ class Common {
             ]
         );
         add_all_countries_to_country_expert();
-    }
 
-   
+        register_taxonomy(
+        'dl_language', // taxonomy slug
+        'at_biz_dir',     // post type
+            [
+                'labels' => [
+                    'name'              => 'Languages',
+                    'singular_name'     => 'Language',
+                    'search_items'      => 'Search Languages',
+                    'all_items'         => 'All Languages',
+                    'edit_item'         => 'Edit Language',
+                    'update_item'       => 'Update Language',
+                    'add_new_item'      => 'Add New Language',
+                    'new_item_name'     => 'New Language Name',
+                    'menu_name'         => 'Directory Languages',
+                ],
+                'hierarchical'      => false, // false like tags, true like categories
+                'show_ui'           => true,
+                'show_admin_column' => false,
+                'show_in_rest'      => false,
+                'public'            => true,
+                'rewrite'           => [ 'slug' => 'language' ],
+            ]
+        );
 
-    /**
-     * Save taxonomy terms when listing is inserted or updated
-     */
-    public function save_countries( $listing_id ) {
-        if ( isset( $_POST['country_expert'] ) && is_array( $_POST['country_expert'] ) ) {
-            $country_ids = array_map( 'intval', $_POST['country_expert'] );
-            wp_set_object_terms( $listing_id, $country_ids, 'country_expert', false );
+        add_all_language_to_dl_language();
+
+    }   
+
+    public function save_country_expert_field( $post_id, $post, $update ) {
+        // Safety checks
+        if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return;
+        if ( wp_is_post_revision( $post_id ) ) return;
+        if ( $post->post_type !== 'at_biz_dir' ) return;
+
+        /**
+         * --------------------------
+         * Save Country Expert Field
+         * --------------------------
+         */
+        if ( isset( $_POST['country_expert'] ) ) {
+            $country_experts = (array) $_POST['country_expert'];
+            $country_experts = array_map( 'intval', $country_experts );
+
+            wp_set_object_terms( $post_id, $country_experts, 'country_expert', false );
+            update_post_meta( $post_id, '_country_expert', $country_experts );
+        }
+
+        /**
+         * --------------------------
+         * Save Language Field
+         * --------------------------
+         */
+        if ( isset( $_POST['dl_language'] ) ) {
+            $languages = (array) $_POST['dl_language'];
+
+            // Handle nested array: dl_language[dl_language][]
+            if ( isset( $languages['dl_language'] ) && is_array( $languages['dl_language'] ) ) {
+                $languages = $languages['dl_language'];
+            }
+
+            $languages = array_map( 'intval', $languages );
+
+            wp_set_object_terms( $post_id, $languages, 'dl_language', false );
+            update_post_meta( $post_id, '_language', $languages );
         }
     }
 
-    
 
-    
-
-   
 }
