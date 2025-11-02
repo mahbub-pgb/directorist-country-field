@@ -128,12 +128,38 @@ class Common {
         if ( wp_is_post_revision( $post_id ) ) return;
         if ( $post->post_type !== 'at_biz_dir' ) return;
 
-        $country_experts = isset( $_POST['country_expert'] ) ? (array) $_POST['country_expert'] : [];
-        $country_experts = array_map( 'intval', $country_experts );
+        /**
+         * --------------------------
+         * Save Country Expert Field
+         * --------------------------
+         */
+        if ( isset( $_POST['country_expert'] ) ) {
+            $country_experts = (array) $_POST['country_expert'];
+            $country_experts = array_map( 'intval', $country_experts );
 
-        wp_set_object_terms( $post_id, $country_experts, 'country_expert', false );
+            wp_set_object_terms( $post_id, $country_experts, 'country_expert', false );
+            update_post_meta( $post_id, '_country_expert', $country_experts );
+        }
 
-        update_post_meta( $post_id, '_country_expert', $country_experts );
+        /**
+         * --------------------------
+         * Save Language Field
+         * --------------------------
+         */
+        if ( isset( $_POST['atbdp_language'] ) ) {
+            $languages = (array) $_POST['atbdp_language'];
 
+            // Handle nested array: atbdp_language[atbdp_language][]
+            if ( isset( $languages['atbdp_language'] ) && is_array( $languages['atbdp_language'] ) ) {
+                $languages = $languages['atbdp_language'];
+            }
+
+            $languages = array_map( 'intval', $languages );
+
+            wp_set_object_terms( $post_id, $languages, 'atbdp_language', false );
+            update_post_meta( $post_id, '_atbdp_language', $languages );
+        }
     }
+
+
 }
