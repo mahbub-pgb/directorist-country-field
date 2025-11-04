@@ -1,9 +1,11 @@
 <?php
 /**
  * Plugin Name: Directorist Country Field
+ * Plugin URI: https://techwithmahbub.com/
  * Description: Adds ISO 639-1 country selector to Directorist listings.
  * Version: 1.1.0
  * Author: Mahbub
+ * Author URI: https://techwithmahbub.com/
  * Text Domain: directorist-country-field
  */
 
