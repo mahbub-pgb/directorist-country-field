@@ -17,7 +17,7 @@ class Front {
    
 
 
-
+// ATBDP_Permalink::get_directorist_listings_page_link()
 
 
     /**
@@ -48,5 +48,15 @@ class Front {
             '1.0.0',
             true
         );
+
+        // Prepare localized data
+        $localize_data = [
+            'ajax_url'     => admin_url( 'admin-ajax.php' ),
+            'nonce'        => wp_create_nonce( 'dlf_ajax_nonce' ),
+            'listings_url' => \ATBDP_Permalink::get_directorist_listings_page_link(),
+        ];
+
+        // Pass data to your JS file
+        wp_localize_script( 'dlf-frontend', 'DLF_JS', $localize_data );
     }
 }

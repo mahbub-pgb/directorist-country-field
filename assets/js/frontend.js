@@ -18,3 +18,16 @@ jQuery(document).ready(function($){
         }
     });
 });
+
+jQuery(document).ready(function ($) {
+    $('.directorist-btn-reset-ajax').on('click', function (e) {
+        e.preventDefault();   
+        e.stopImmediatePropagation(); // stop any default AJAX or other event
+
+        // Redirect to the localized listings page
+        if (typeof DLF_JS !== 'undefined' && DLF_JS.listings_url) {
+            window.location.href = DLF_JS.listings_url;
+        } 
+    });
+});
+
