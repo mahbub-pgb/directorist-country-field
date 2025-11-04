@@ -31,23 +31,6 @@ class Admin {
             ],
         ];
 
-        $search_form_widgets['other_widgets']['widgets']['language'] = [
-            'label'   => __( 'Language', 'directorist' ),
-            'icon'    => 'las la-language',
-            'options' => [
-                'label' => [
-                    'type'  => 'text',
-                    'label' => __( 'Label', 'directorist' ),
-                    'value' => __( 'Language', 'directorist' ),
-                ],
-                'placeholder' => [
-                    'type'  => 'text',
-                    'label' => __( 'Placeholder', 'directorist' ),
-                    'value' => __( 'Select Language', 'directorist' ),
-                ],
-            ],
-        ];
-
         return $search_form_widgets;
     }
 
@@ -71,25 +54,6 @@ class Admin {
                     'type'  => 'text',
                     'label' => __( 'Placeholder', 'directorist-country-field' ),
                     'value' => __( 'Selected Countries', 'directorist-country-field' ),
-                ],
-            ],
-        ];
-
-        $widgets['language'] = [
-            'type'          => 'widget',
-            'label'         => __( 'language', 'directorist-country-field' ),
-            'icon'          =>  'las la-language', // Any line-awesome icon
-            'allowMultiple' => false,
-            'options'       => [
-                'label' => [
-                    'type'  => 'text',
-                    'label' => __( 'Label', 'directorist-country-field' ),
-                    'value' => __( 'language', 'directorist-country-field' ),
-                ],
-                'placeholder' => [
-                    'type'  => 'text',
-                    'label' => __( 'Placeholder', 'directorist-country-field' ),
-                    'value' => __( 'Selected language', 'directorist-country-field' ),
                 ],
             ],
         ];
@@ -155,59 +119,6 @@ class Admin {
                 'only_for_admin' => [
                     'type'  => 'toggle',
                     'label' => __( 'Admin Only', 'directorist-country-field' ),
-                    'value' => false,
-                ],
-            ],
-        ];
-
-        // --------------------------
-        // 🔹 Language Field
-        // --------------------------
-        $languages = get_terms([
-            'taxonomy'   => 'language',
-            'hide_empty' => false,
-        ]);
-
-        $language_options = [];
-        if ( ! is_wp_error( $languages ) && ! empty( $languages ) ) {
-            foreach ( $languages as $lang ) {
-                $language_options[ $lang->term_id ] = $lang->name;
-            }
-        } else {
-            $language_options = [ '' => __( 'No languages found', 'directorist-language-field' ) ];
-        }
-
-        $fields['language'] = [
-            'label'   => __( 'Language', 'directorist-language-field' ),
-            'icon'    => 'las la-language',
-            'options' => [
-                'type' => [
-                    'type'  => 'hidden',
-                    'value' => 'language',
-                ],
-                'field_key' => array_merge(
-                    $custom_field_meta_key_field,
-                    [ 'value' => 'custom-language-field' ]
-                ),
-                'label' => [
-                    'type'  => 'text',
-                    'label' => __( 'Label', 'directorist-language-field' ),
-                    'value' => __( 'Language', 'directorist-language-field' ),
-                ],
-                'options' => [
-                    'type'     => 'select',
-                    'label'    => __( 'Available Languages', 'directorist-language-field' ),
-                    'options'  => $language_options,
-                    'multiple' => true,
-                ],
-                'required' => [
-                    'type'  => 'toggle',
-                    'label' => __( 'Required', 'directorist-language-field' ),
-                    'value' => false,
-                ],
-                'only_for_admin' => [
-                    'type'  => 'toggle',
-                    'label' => __( 'Admin Only', 'directorist-language-field' ),
                     'value' => false,
                 ],
             ],
