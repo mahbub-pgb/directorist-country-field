@@ -13,6 +13,20 @@ class Common {
         add_action( 'init', [ $this ,'register_country_taxonomy'], 20 );
         add_filter( 'directorist_template', [ $this, 'change_template' ], 20, 2 );
         add_filter( 'plugins_loaded', [ $this, 'load_plugin' ], 10, 2 );
+        add_filter( 'atbdp_listing_meta_user_submission', [ $this, 'save_listing_submission' ], 10, 1 );
+
+    }
+
+    public function save_listing_submission( $meta_data ) {
+
+        if ( isset( $_POST['atbdp_language'] ) ) {
+            $meta_data['_language'] =  $_POST['atbdp_language'] ;
+        }
+
+        if ( isset( $_POST['country_expert'] ) ) {
+            $meta_data['_country_expert'] = sanitize_text_field( $_POST['country_expert'] );
+        }
+        return $meta_data;
     }
 
 

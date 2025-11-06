@@ -12,6 +12,8 @@ class Front {
     }
 
     public function head(){
+
+        // dlf_pri( get_option( '__save_listing_submission' )['atbdp_language'] );
     }
 
    
