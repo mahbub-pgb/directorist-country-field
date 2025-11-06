@@ -72,6 +72,16 @@ class Common {
                 return false;
             }
         }
+
+        if ( 'search-form/fields/language' == $template ) {
+            $template = DLF_PLUGIN_DIR . 'templates/search/language.php';
+             if ( file_exists( $template ) ) {
+
+                dcf_load_template( $template, $args );
+                
+                return false;
+            }
+        }
         
         return $template;
 
@@ -124,6 +134,19 @@ class Common {
 
             wp_set_object_terms( $post_id, $country_experts, 'country_expert', false );
             update_post_meta( $post_id, '_country_expert', $country_experts );
+        }
+
+        /**
+         * --------------------------
+         * Save Language Field
+         * --------------------------
+         */
+        if ( isset( $_POST['atbdp_language'] ) ) {
+            $languages = (array) $_POST['atbdp_language'];
+            $languages = array_map( 'intval', $languages );
+
+            wp_set_object_terms( $post_id, $languages, 'atbdp_language', false );
+            update_post_meta( $post_id, '_atbdp_language', $languages );
         }        
     }
 
