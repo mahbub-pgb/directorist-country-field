@@ -141,13 +141,39 @@ class Common {
          * Save Language Field
          * --------------------------
          */
-        if ( isset( $_POST['atbdp_language'] ) ) {
-            $languages = (array) $_POST['atbdp_language'];
-            $languages = array_map( 'intval', $languages );
 
-            wp_set_object_terms( $post_id, $languages, 'atbdp_language', false );
-            update_post_meta( $post_id, '_atbdp_language', $languages );
-        }        
+        if ( isset( $_POST['tax_input']['atbdp_language'] ) ) {
+            $languages_raw = $_POST['tax_input']['atbdp_language'];
+
+            // Convert to array (split by comma)
+            $languages = array_map( 'trim', explode( ',', $languages_raw ) );
+
+            $term_ids = [];
+
+            foreach ( $languages as $lang ) {
+                if ( ! empty( $lang ) ) {
+                    // Check if the term already exists
+                    $term = term_exists( $lang, 'atbdp_language' );
+
+                    // Create it if not found
+                    if ( ! $term ) {
+                        $term = wp_insert_term( $lang, 'atbdp_language' );
+                    }
+
+                    // Store the term ID if valid
+                    if ( ! is_wp_error( $term ) && isset( $term['term_id'] ) ) {
+                        $term_ids[] = intval( $term['term_id'] );
+                    }
+                }
+            }
+
+            // Assign taxonomy terms to post
+            wp_set_object_terms( $post_id, $term_ids, 'atbdp_language', false );
+
+            // Save meta if you want to reference later
+            update_post_meta( $post_id, '_language', $term_ids );
+        }
+       
     }
 
 
