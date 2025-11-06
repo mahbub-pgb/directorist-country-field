@@ -20,14 +20,47 @@ jQuery(document).ready(function($){
 });
 
 jQuery(document).ready(function ($) {
-    $('.directorist-btn-reset-ajax').on('click', function (e) {
-        e.preventDefault();   
-        e.stopImmediatePropagation(); // stop any default AJAX or other event
 
-        // Redirect to the localized listings page
-        if (typeof DLF_JS !== 'undefined' && DLF_JS.listings_url) {
+    function setCookie(name, value, days) {
+        var expires = "";
+        if (days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days*24*60*60*1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+    }
+
+    function getCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0;i < ca.length;i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1,c.length);
+            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        }
+        return null;
+    }
+
+    $('.directorist-btn-reset-ajax').on('click', function (e) {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+
+        var urlFromCookie = getCookie('listings_url');
+
+        if (urlFromCookie) {
+            // If cookie exists, use it
+            window.location.href = urlFromCookie;
+        } else if (typeof DLF_JS !== 'undefined' && DLF_JS.listings_url) {
+            // If cookie not found, set it and redirect
+            setCookie('listings_url', DLF_JS.listings_url, 1);
             window.location.href = DLF_JS.listings_url;
-        } 
+        } else {
+            console.warn('Listings URL not available.');
+        }
     });
+
 });
+
+
 
