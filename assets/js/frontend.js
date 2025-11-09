@@ -1,26 +1,61 @@
-jQuery(document).ready(function($){
-    var $select = $('#country_expert_select');
+jQuery(document).ready(function($) {
 
-    // Initialize Select2 only if available
-    if ( $.fn.select2 ) {
-        $select.select2({
-            placeholder: $select.data('placeholder'),
+    /************ 1. Listing Title Label Toggle ************/
+    var $listingInput = $('#listing_title');
+    var $listingLabel = $listingInput.siblings('label');
+
+    function toggleListingLabel() {
+        if ($listingInput.val().trim() !== '') {
+            $listingLabel.css('visibility', 'hidden');
+        } else {
+            $listingLabel.css('visibility', 'visible');
+        }
+    }
+
+    toggleListingLabel(); // initial check
+    $listingInput.on('input change keyup', toggleListingLabel);
+
+    /************ 2. Initialize Select2 for Country Expert ************/
+    var $countrySelect = $('#country_expert_select');
+
+    if ($.fn.select2) {
+        $countrySelect.select2({
+            placeholder: $countrySelect.data('placeholder'),
             allowClear: true,
             width: '100%'
         });
     }
 
-    // Clear button behavior (click + keyboard)
-    var $clearBtn = $('.directorist-search-field__btn--clear');
-    $clearBtn.on('click keypress', function(e){
-        if (e.type === 'click' || (e.type === 'keypress' && (e.key === 'Enter' || e.key === ' '))) {
-            $select.val(null).trigger('change');
+    /************ 3. Clear Button Behavior for Select2 ************/
+    function toggleClearButton($select) {
+        var $clearBtn = $select.closest('.directorist-search-field').find('.directorist-search-field__btn--clear');
+        var selected = $select.val();
+        if (selected && selected.length > 0) {
+            $clearBtn.show();
+        } else {
+            $clearBtn.hide();
         }
+    }
+
+    $('.directorist-search-select').each(function() {
+        var $select = $(this);
+
+        toggleClearButton($select); // initial check
+
+        // On change
+        $select.on('change', function() {
+            toggleClearButton($select);
+        });
+
+        // On clear button click
+        $select.closest('.directorist-search-field')
+               .find('.directorist-search-field__btn--clear')
+               .on('click', function() {
+                   setTimeout(function() { toggleClearButton($select); }, 100);
+               });
     });
-});
 
-jQuery(document).ready(function ($) {
-
+    /************ 4. Cookie Handling for Reset Button ************/
     function setCookie(name, value, days) {
         var expires = "";
         if (days) {
@@ -28,31 +63,28 @@ jQuery(document).ready(function ($) {
             date.setTime(date.getTime() + (days*24*60*60*1000));
             expires = "; expires=" + date.toUTCString();
         }
-        document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
     }
 
     function getCookie(name) {
         var nameEQ = name + "=";
         var ca = document.cookie.split(';');
-        for(var i=0;i < ca.length;i++) {
-            var c = ca[i];
-            while (c.charAt(0)==' ') c = c.substring(1,c.length);
-            if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+        for(var i=0; i < ca.length; i++) {
+            var c = ca[i].trim();
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
         }
         return null;
     }
 
-    $('.directorist-btn-reset-ajax').on('click', function (e) {
+    $('.directorist-btn-reset-ajax').on('click', function(e) {
         e.preventDefault();
         e.stopImmediatePropagation();
 
         var urlFromCookie = getCookie('listings_url');
 
         if (urlFromCookie) {
-            // If cookie exists, use it
             window.location.href = urlFromCookie;
         } else if (typeof DLF_JS !== 'undefined' && DLF_JS.listings_url) {
-            // If cookie not found, set it and redirect
             setCookie('listings_url', DLF_JS.listings_url, 1);
             window.location.href = DLF_JS.listings_url;
         } else {
@@ -61,34 +93,3 @@ jQuery(document).ready(function ($) {
     });
 
 });
-
-jQuery(document).ready(function($) {
-    // target your select field and clear button
-    var $select = $('#atbdp_language_select');
-    var $clearBtn = $select.closest('.directorist-search-field').find('.directorist-search-field__btn--clear');
-
-    function toggleClearButton() {
-        var selected = $select.val(); // get selected values
-        if (selected && selected.length > 0) {
-            $clearBtn.show();  // show icon when something selected
-        } else {
-            $clearBtn.hide();  // hide when nothing selected
-        }
-    }
-
-    // Run once on load
-    toggleClearButton();
-
-    // When selection changes (Select2 compatible)
-    $select.on('change', function() {
-        toggleClearButton();
-    });
-
-    // When clear icon is clicked, also hide it
-    $clearBtn.on('click', function() {
-        setTimeout(toggleClearButton, 100); // wait for clear action
-    });
-});
-
-
-
