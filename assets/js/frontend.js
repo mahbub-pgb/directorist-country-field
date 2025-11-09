@@ -62,5 +62,33 @@ jQuery(document).ready(function ($) {
 
 });
 
+jQuery(document).ready(function($) {
+    // target your select field and clear button
+    var $select = $('#atbdp_language_select');
+    var $clearBtn = $select.closest('.directorist-search-field').find('.directorist-search-field__btn--clear');
+
+    function toggleClearButton() {
+        var selected = $select.val(); // get selected values
+        if (selected && selected.length > 0) {
+            $clearBtn.show();  // show icon when something selected
+        } else {
+            $clearBtn.hide();  // hide when nothing selected
+        }
+    }
+
+    // Run once on load
+    toggleClearButton();
+
+    // When selection changes (Select2 compatible)
+    $select.on('change', function() {
+        toggleClearButton();
+    });
+
+    // When clear icon is clicked, also hide it
+    $clearBtn.on('click', function() {
+        setTimeout(toggleClearButton, 100); // wait for clear action
+    });
+});
+
 
 

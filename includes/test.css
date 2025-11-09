@@ -1,0 +1,1944 @@
+.directorist-single-info-address {
+    display: none !important;
+}
+
+
+/* Montserrat-Regular for Directorist & Fiverr sections */
+[class*="directorist-"],
+.fiverr-card,
+.fiverr-card * {
+  font-family: 'Montserrat-Regular', sans-serif !important;
+}
+
+
+/* Montserrat-Regular for all inputs & form fields */
+input,
+textarea,
+select,
+button,
+.select2-selection--single,
+.select2-selection--multiple,
+.directorist-form-element {
+  font-family: 'Montserrat-Regular', sans-serif !important;
+}
+
+.header-area a.elementor-item.elementor-item-active {
+    font-weight: 700 !important;
+}
+
+
+
+a{
+  text-decoration:none !important;
+}
+.icon-cols a.carousel-arrow {
+    position: absolute;
+    top: 12em !important;
+    bottom: initial !important;
+    margin: 0 auto !important;
+}
+
+
+body {
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+
+
+
+
+.customsearch-widgetbody,
+.customuserbox {
+  background-color: #070339 !important;
+}
+
+/* === BUTTON STYLES === */
+/* Directorist primary buttons */
+.directorist-btn {
+  background-color: #EA2D91 !important;
+  color: #ffffff !important;
+  font-family: "Montserrat-Regular", sans-serif;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  text-transform: capitalize !important;
+  padding: 12px 25px !important;
+  border: none !important;
+  border-radius: 50px !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.directorist-btn:hover,
+.directorist-btn:focus {
+  background-color: #FF6308 !important;
+}
+.directorist-btn.directorist-btn--add-listing,
+.directorist-btn.directorist-btn--logout {
+  line-height: 20px !important;
+}
+
+/* Fiverr buttons */
+.fiverr-btn {
+  display: inline-block;
+  padding: 8px 14px;
+  border: 1px solid #000;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  color: #000;
+  transition: 0.2s;
+}
+.fiverr-btn:hover {
+  background: #000;
+  color: #fff;
+}
+
+/* === MAIN SITE === */
+.fiverr-card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.fiverr-card__avatar img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin: 0 auto 12px;
+}
+.fiverr-card__title {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+.fiverr-badge {
+  background-color: #5c3bff;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+.fiverr-card__rating {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.fiverr-card__excerpt {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 12px;
+}
+.fiverr-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.fiverr-tag {
+  background: #f0f0f0;
+  padding: 4px 10px;
+  font-size: 12px;
+  border-radius: 20px;
+}
+.fiverr-card__button {
+  margin-top: auto;
+}
+
+header.entry-header .entry-title {
+  font-weight: 600;
+  font-size: 2rem;
+  color: #FFF !important;
+}
+
+.header-area a.elementor-item.elementor-item-active {
+  font-weight: 700 !important;
+}
+
+.sentence {
+  opacity: 0;
+  animation: fadeIn 2s forwards;
+}
+.sentence-1 { animation-delay: 0s; }
+.sentence-2 { animation-delay: 0.5s; }
+.sentence-3 { animation-delay: 1s; }
+.sentence-4 { animation-delay: 1.5s; }
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.icon-cols a.carousel-arrow {
+  position: absolute;
+  top: 12em !important;
+  bottom: initial !important;
+  margin: 0 auto !important;
+}
+
+.customuserboxheader {
+  color: #FFF !important;
+}
+
+/* === DIRECTORIST PLUGIN === */
+/* Quick-action & social share */
+.directorist-single-listing-quick-action .directorist-social-share {
+  position: relative;
+  display: none;
+}
+
+/* Image & slider */
+.directorist-single-image,
+.directorist-single-listing-slider-wrap {
+  float: left;
+  width: 180px;
+  height: 180px;
+  margin-right: 1em;
+}
+.directorist-single-image img,
+.directorist-single-listing-slider-wrap .swiper-slide,
+.directorist-single-listing-slider-wrap .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+.directorist-single-listing-slider {
+  max-height: 180px !important;
+}
+
+/* Clear-fix */
+.directorist-card-contact-owner .directorist-card__body::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Typography & headings */
+.directorist-card__header__title,
+.directorist-single-contents-area .directorist-card__header__title,
+.directorist-advanced-filter__title,
+.directorist-details-info-wrap .directorist-single-info__label__text,
+.directorist-details-info-wrap .directorist-single-info__value,
+.directorist-listing-details__tagline,
+.directorist-listings-header .directorist-header-found-title {
+  font-size: 18px !important;
+  line-height: 1.3 !important;
+  font-weight: 500 !important;
+  color: #070339 !important;
+}
+
+/* Dropdowns */
+.directorist-dropdown__toggle {
+  background-color: #ffffff !important;
+  color: #070339 !important;
+  border-color: #ffffff !important;
+}
+.directorist-dropdown__toggle:hover,
+.directorist-dropdown__toggle:focus {
+  background-color: #f0f0f0 !important;
+  border-color: #f0f0f0 !important;
+}
+.directorist-dropdown__toggle.directorist-toggle-has-icon:after {
+  background-color: #070339 !important;
+}
+.directorist-dropdown.directorist-sortby-dropdown {
+  border: none !important;
+  border-radius: 8px !important;
+}
+
+/* View-toggle icons */
+.directorist-viewas__item,
+.directorist-archive-sidebar-toggle {
+  background: transparent !important;
+  border: none !important;
+  color: #ffffff !important;
+  padding: 8px !important;
+  border-radius: 8px !important;
+}
+.directorist-viewas__item i,
+.directorist-archive-sidebar-toggle i {
+  color: #ffffff !important;
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+}
+.directorist-viewas__item.active {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+.directorist-viewas__item i:after {
+  width: 16px;
+  height: 16px;
+  background-color: #FFFFFF;
+}
+
+/* Search form */
+.directorist-search-form__box {
+  background-color: rgba(255,255,255,0.08) !important;
+  backdrop-filter: blur(6px) !important;
+  -webkit-backdrop-filter: blur(6px) !important;
+  padding: 25px !important;
+  border: 1px solid rgba(255,255,255,0.2) !important;
+  border-radius: 40px !important;
+  display: flex !important;
+  flex-wrap: wrap !important;
+  align-items: center !important;
+  gap: 15px !important;
+}
+.listing-with-sidebar__searchform .directorist-filter-location-icon {
+  position: absolute !important;
+  bottom: 12px !important;
+  right: 30px !important;
+}
+
+/* Inputs & selects */
+.directorist-search-field__input,
+.directorist-form-element,
+.select2-selection--single {
+  background-color: rgba(255,255,255,0.15) !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 12px 10px !important;
+  font-size: 15px !important;
+  box-shadow: none !important;
+}
+.directorist-search-field__input::placeholder,
+.select2-selection__placeholder {
+  color: rgba(255,255,255,0.6) !important;
+}
+.select2-selection {
+  background-color: rgba(255,255,255,0.15) !important;
+  border-radius: 50px !important;
+  padding: 12px 20px !important;
+}
+.directorist-select2-addon .directorist-icon-mask:after {
+  background-color: #FF6308 !important;
+}
+.directorist-filter-location-icon .directorist-icon-mask:after {
+  background-color: #EA2D91 !important;
+}
+.directorist-search-field__btn--clear i:after {
+  background-color: #ffffff !important;
+}
+
+/* Field labels */
+.directorist-search-field__label,
+.directorist-form-group label {
+  display: block !important;
+  margin-bottom: 6px !important;
+ 
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+.directorist-search-field.input-is-focused .directorist-search-field__label,
+.directorist-search-field.directorist-color .directorist-search-field__label {
+  opacity: 1 !important;
+}
+
+/* Add-listing wizard */
+.directorist-add-listing-form .directorist-form-element,
+.directorist-add-listing-form .select2-selection--single,
+.directorist-add-listing-form .select2-selection--multiple {
+  background-color: #ffffff !important;
+  color: #070339 !important;
+  border: 1px solid #ddd !important;
+  border-radius: 6px !important;
+  padding: 10px 15px !important;
+  font-size: 15px !important;
+}
+.directorist-add-listing-form .directorist-form-label {
+  color: #070339 !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  margin-bottom: 6px !important;
+  display: block !important;
+}
+.directorist-add-listing-form .select2-selection__choice {
+  background-color: #FF6308 !important;
+  color: #ffffff !important;
+  border-radius: 20px !important;
+  padding: 5px 10px !important;
+  font-size: 13px !important;
+}
+.directorist-add-listing-form .directorist-checkbox__label {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  color: #070339 !important;
+}
+
+/* Listings header */
+.directorist-listings-header .directorist-header-found-title {
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  color: #ffffff !important;
+}
+
+/* Listing body text */
+.directorist-card__body p,
+.directorist-listing-details__text p {
+  font-size: 16px !important;
+  line-height: 28px !important;
+  color: #070339 !important;
+  margin: 0 0 15px !important;
+  text-align: left !important;
+}
+
+/* Single-listing info blocks */
+.directorist-details-info-wrap .directorist-single-info__label__text,
+.directorist-details-info-wrap .directorist-single-info__value,
+.directorist-listing-details__tagline {
+  font-size: 18px !important;
+  line-height: 25px !important;
+  color: #070339 !important;
+}
+
+/* Info pills */
+.directorist-listing-single__info {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+  margin-bottom: 16px !important;
+}
+.directorist-listing-single__info a {
+  padding: 5px 10px !important;
+  font-size: 12px !important;
+  border: 1px solid #000 !important;
+  border-radius: 20px !important;
+  color: #000 !important;
+  text-decoration: none !important;
+}
+
+/* Bookmark icon */
+.directorist-single-listing-action.directorist-action-bookmark .directorist-icon-mask:after {
+  background-color: #FFF;
+}
+
+/* Card shadow */
+.directorist-card {
+  box-shadow:
+    0   1.2px  1.92251px rgba(0, 0, 0, 0.02),
+    0   2px    3.68135px rgba(0, 0, 0, 0.04),
+    0   1px    5px       rgba(0, 0, 0, 0.05);
+}
+
+/* Category listings */
+.directorist-info-item.directorist-listing-category {
+  display: flex !important;
+  
+  align-items: flex-start;
+  gap: 5px 0;
+}
+.directorist-info-item.directorist-listing-category > span {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 5px 10px;
+}
+.directorist-info-item.directorist-listing-category > span > a {
+  display: inline-block !important;
+  margin: 0 !important;
+  white-space: normal !important;
+}
+
+/* Tag list */
+.directorist-listing-single__info a,
+.directorist-single-tag-list a {
+  font-family: 'Montserrat-Regular', sans-serif !important;
+  font-weight: 500 !important;
+  color: #070339 !important;
+}
+.directorist-listing-single p,
+.directorist-listing-single__info p {
+  font-family: 'Montserrat-Regular', sans-serif !important;
+  font-weight: 500 !important;
+  color: #070339 !important;
+}
+.directorist-single-contents-area .directorist-details-info-wrap a {
+  font-size: 14px;
+  font-weight: 600 !important;
+  color: #070339 !important;
+  text-decoration: none;
+  box-shadow: none;
+}
+
+/* Label icons */
+.directorist-details-info-wrap .directorist-single-info__label-icon {
+  color: #ffffff !important;
+  background-color: #FF6308 !important;
+}
+.directorist-single-contents-area .directorist-single-info__label-icon .directorist-icon-mask:after {
+  background-color: #FFFFFF !important;
+}
+
+
+/* Select2 rendered tags */
+.directorist-content-active .select2.select2-container--default .select2-selection__rendered {
+  display: flex;
+  gap: 5px;
+  height: auto;
+  line-height: 30px;
+  font-size: 14px;
+  overflow-y: auto;
+  align-items: center;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  color: #FFFFFF;
+}
+
+.directorist-single-listing-slider {
+  max-height: 180px !important;
+  padding: 20px !important;
+}
+
+/* Form group overrides */
+.directorist-form-group .directorist-form-element {
+  border-bottom: none !important;
+  
+}
+.directorist-form-group label {
+  display: block !important;
+  margin-bottom: 6px !important;
+  
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+/* Focused search clear button */
+.directorist-search-field .directorist-filter-location-icon ~ .directorist-search-field__btn--clear,
+.directorist-search-field .directorist-select ~ .directorist-search-field__btn--clear {
+  right: 40px;
+  bottom: 24px;
+}
+.directorist-search-form__top .directorist-search-field.input-is-focused .directorist-filter-location-icon ~ .directorist-search-field__btn--clear,
+.directorist-search-form__top .directorist-search-field.input-is-focused .directorist-select ~ .directorist-search-field__btn--clear {
+  right: 60px;
+  bottom: 20px;
+}
+.directorist-search-form__top .directorist-search-field.input-is-focused .select2-container .directorist-select2-addons-area .directorist-select2-dropdown-toggle {
+  right: 25px;
+}
+
+/* Add-ons area */
+.directorist-content-active .select2-container .directorist-select2-addons-area {
+  top: unset;
+  bottom: 20px;
+  right: 10px;
+}
+
+/* Sidebar & filters */
+.listing-with-sidebar {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  background-color: #070339 !important;
+}
+.listing-with-sidebar__sidebar {
+  position: relative;
+  max-width: 350px;
+  width: 100%;
+}
+.listing-with-sidebar__sidebar .directorist-advanced-filter__title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  color: #FFFFFF !important;
+}
+.directorist-advanced-filter__advanced {
+  overflow: visible;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Select2 dropdowns */
+.select2-container {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+.select2-selection--multiple {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  width: 100% !important;
+  padding: 4px 6px;
+  min-height: 40px;
+}
+.select2-selection__choice {
+  white-space: nowrap;
+  margin: 2px 4px 2px 0;
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.select2-container .select2-dropdown {
+  position: absolute !important;
+  width: 100% !important;
+  max-width: 350px !important;
+  box-sizing: border-box;
+  z-index: 9999;
+}
+.select2-results__options {
+  overflow-y: auto;
+}
+
+/* Responsive tweaks */
+@media (max-width: 767px) {
+  
+  .directorist-card__header__title {
+    font-size: 16px !important;
+  }
+  .directorist-card__body p,
+  .directorist-listing-details__text p {
+    font-size: 14px !important;
+    line-height: 24px !important;
+  }
+  .directorist-details-info-wrap .directorist-single-info__label__text,
+  .directorist-details-info-wrap .directorist-single-info__value,
+  .directorist-listing-details__tagline {
+    font-size: 16px !important;
+    line-height: 22px !important;
+  }
+  .directorist-details-info-wrap .directorist-single-info__value {
+    font-size: 16px !important;
+  }
+}
+
+/* Override default info-value size */
+.directorist-details-info-wrap .directorist-single-info__value {
+  font-size: 16px !important;
+}
+
+.directorist-single-contents-area .directorist-details-info-wrap a {
+  font-size: 16px;
+  font-weight: 400 !important;
+  color: #070339 !important;
+  text-decoration: underline !important;
+  box-shadow: none;
+  font-family: 'Montserrat-Regular', sans-serif !important;
+}
+
+.directorist-widget-listing__price {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Montserrat-Regular', sans-serif !important;
+ }
+ 
+ 
+ .directorist-details-info-wrap .directorist-single-info__value {
+  font-size: 16px !important;
+  font-weight: 400 !important;
+}
+
+.directorist-details-info-wrap .directorist-single-info__label__text, .directorist-details-info-wrap .directorist-single-info__value, .directorist-listing-details__tagline {
+  font-size: 16px !important;
+  line-height: 1.4 !important;
+  color: #070339 !important;
+}
+
+
+/* ─── Explicit Montserrat-Regular on key Directorist headings & taglines ─── */
+.directorist-card__header__title,
+.directorist-single-contents-area .directorist-card__header__title,
+.directorist-advanced-filter__title,
+.directorist-details-info-wrap .directorist-single-info__label__text,
+.directorist-details-info-wrap .directorist-single-info__value,
+.directorist-listing-details__tagline,
+.directorist-listings-header .directorist-header-found-title {
+  font-family: 'Montserrat-Regular', sans-serif !important;
+}
+
+/* ─── Bigger than paragraph text ─── */
+.directorist-details-info-wrap .directorist-single-info__label__text,
+.directorist-details-info-wrap .directorist-single-info__value,
+.directorist-listing-details__tagline {
+  font-size: 16px !important;    /* bumped above 16px paragraph size */
+  line-height: 1.4 !important;
+  color: #070339 !important;
+}
+
+/* ─── Extra emphasis (bolder) on contact lists ─── */
+.directorist-single-contents-area .directorist-details-info-wrap ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-weight: 700 !important;
+}
+
+
+
+
+/* ─── Author contact text ─── */
+.directorist-single-author-contact-info-text {
+  font-family: 'Montserrat-Regular', sans-serif !important;
+}
+
+/* ─── Custom form-element sizing ─── */
+.directorist-widget__listing-contact
+  .directorist-form-group
+  .directorist-form-element {
+  height: 46px !important;
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  border: 1px solid #000 !important;
+}
+
+.directorist-form-group label {
+  display: block !important;
+  margin-bottom: 6px !important;
+  
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  margin-left: 10px !important;
+}
+
+ .directorist-single-listing-slider-wrap .swiper-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50% !important;
+  display: block;
+}
+
+.swiper-wrapper {
+    padding: 0px !important;
+}
+
+.directorist-form-group .directorist-form-element {
+    border: 1px solid #000000 !important;
+    
+    border-radius: 0px !important;
+}
+
+
+.listing-with-sidebar__searchform 
+  .directorist-search-query > label {
+    color: #fff !important;
+}
+
+/* Style Gravity Forms login button like Elementor */
+#gform_0 .gform_footer input[type="submit"] {
+  background-color: #EA2D91;
+  color: #ffffff;
+  font-family: "Montserrat", Sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: capitalize;
+  border-radius: 50px;
+  padding: 12px 25px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover state to match Elementor */
+#gform_0 .gform_footer input[type="submit"]:hover {
+  background-color: #FF6308;
+  color: #ffffff;
+}
+/* Login Form Title - Make white */
+#gform_0 .gform_title {
+  color: #FFFFFF;
+}
+
+/* Remember Me Label - Make white */
+#gform_0 label[for="choice_3"] {
+  color: #FFFFFF;
+}
+
+
+.gf_login_links a {
+  color: #EA2D91 !important;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.gf_login_links a:hover {
+  color: #FF6308 !important; /* Optional hover effect */
+}
+/* === STYLES FOR SEEKER FORM ONLY (Form ID #1) === */
+
+#gform_wrapper_1 {
+  color: #070339; /* Make all form text white by default */
+}
+
+/* Form title */
+#gform_wrapper_1 .gform_title {
+  color: #070339;
+}
+
+/* Labels */
+#gform_wrapper_1 .gform-field-label,
+#gform_wrapper_1 .gfield_label,
+#gform_wrapper_1 .gform-field-label--type-sub {
+  color: #070339;
+}
+
+/* Checkbox/radio labels (like Remember Me) */
+#gform_wrapper_1 .gchoice label {
+  color: #070339;
+}
+
+/* Input + select fields — keep readable, clean contrast */
+#gform_wrapper_1 input[type="text"],
+#gform_wrapper_1 input[type="email"],
+#gform_wrapper_1 input[type="password"],
+#gform_wrapper_1 input[type="tel"],
+#gform_wrapper_1 input[type="url"],
+#gform_wrapper_1 textarea,
+#gform_wrapper_1 select {
+  background-color: #ffffff;
+  color: #112337;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Placeholder color inside fields */
+#gform_wrapper_1 input::placeholder,
+#gform_wrapper_1 textarea::placeholder {
+  color: #888;
+}
+
+/* Submit button to match Elementor styles */
+#gform_wrapper_1 .gform_footer input[type="submit"] {
+  background-color: #EA2D91;
+  color: #ffffff;
+  font-family: "Montserrat", Sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: capitalize;
+  border-radius: 50px;
+  padding: 12px 25px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover state */
+#gform_wrapper_1 .gform_footer input[type="submit"]:hover {
+  background-color: #FF6308;
+  color: #ffffff;
+}
+
+/* Link styles (like register/forgot) */
+#gform_wrapper_1 .gform_login_links a {
+  color: #EA2D91 !important;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+#gform_wrapper_1 .gform_login_links a:hover {
+  color: #FF6308 !important;
+}
+
+#gform_wrapper_1 .gform-field-label, #gform_wrapper_1 .gfield_label, #gform_wrapper_1 .gform-field-label--type-sub {
+    font-family: "Montserrat-SemiBold", Sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #070339;
+}
+
+
+/* === STYLES FOR TALENT FORM ONLY (Form ID #2) === */
+
+#gform_wrapper_2 {
+ font-family: "Montserrat-SemiBold", Sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #070339;
+}
+
+/* Title and all field labels white */
+#gform_wrapper_2 .gform_title,
+#gform_wrapper_2 .gfield_label,
+#gform_wrapper_2 .gform-field-label,
+#gform_wrapper_2 .gform-field-label--type-sub {
+ font-family: "Montserrat-SemiBold", Sans-serif;
+  
+    font-weight: 600;
+    color: #070339;
+}
+
+/* Checkbox/Radio labels */
+#gform_wrapper_2 .gchoice label {
+  font-family: "Montserrat-SemiBold", Sans-serif;
+  
+    color: #070339;
+}
+
+/* Input, textarea, select fields */
+#gform_wrapper_2 input[type="text"],
+#gform_wrapper_2 input[type="email"],
+#gform_wrapper_2 input[type="password"],
+#gform_wrapper_2 input[type="tel"],
+#gform_wrapper_2 input[type="url"],
+#gform_wrapper_2 input[type="number"],
+#gform_wrapper_2 select,
+#gform_wrapper_2 textarea {
+  background-color: #ffffff;
+  color: #112337;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Placeholder text */
+#gform_wrapper_2 input::placeholder,
+#gform_wrapper_2 textarea::placeholder {
+  color: #888;
+}
+
+/* Submit button styled like Elementor buttons */
+#gform_wrapper_2 .gform_footer input[type="submit"] {
+  background-color: #EA2D91;
+  color: #ffffff;
+  font-family: "Montserrat", Sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: capitalize;
+  border-radius: 50px;
+  padding: 12px 25px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Submit button hover state */
+#gform_wrapper_2 .gform_footer input[type="submit"]:hover {
+  background-color: #FF6308;
+  color: #ffffff;
+}
+
+/* Optional: link colors if present */
+#gform_wrapper_2 a {
+  color: #EA2D91;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+#gform_wrapper_2 a:hover {
+  color: #FF6308;
+}
+#gform_wrapper_2 .gfield_description {
+  color: #ffffff;
+}
+
+
+#gform_wrapper_2 .gform-field-label, #gform_wrapper_2 .gfield_label, #gform_wrapper_2 .gform-field-label--type-sub {
+    font-family: "Montserrat-SemiBold", Sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #070339;
+}
+
+/* === STYLES FOR TALENT FORM ONLY (Form ID #3) === */
+
+#gform_wrapper_3 {
+  font-family: "Montserrat-SemiBold", Sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #070339;
+}
+
+/* Title and all field labels white */
+#gform_wrapper_3 .gform_title,
+#gform_wrapper_3 .gfield_label,
+#gform_wrapper_3 .gform-field-label,
+#gform_wrapper_3 .gform-field-label--type-sub {
+  font-family: "Montserrat-SemiBold", Sans-serif;
+  font-weight: 600;
+  color: #070339;
+}
+
+/* Checkbox/Radio labels */
+#gform_wrapper_3 .gchoice label {
+  font-family: "Montserrat-SemiBold", Sans-serif;
+  color: #070339;
+}
+
+/* Input, textarea, select fields */
+#gform_wrapper_3 input[type="text"],
+#gform_wrapper_3 input[type="email"],
+#gform_wrapper_3 input[type="password"],
+#gform_wrapper_3 input[type="tel"],
+#gform_wrapper_3 input[type="url"],
+#gform_wrapper_3 input[type="number"],
+#gform_wrapper_3 select,
+#gform_wrapper_3 textarea {
+  background-color: #ffffff;
+  color: #112337;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Placeholder text */
+#gform_wrapper_3 input::placeholder,
+#gform_wrapper_3 textarea::placeholder {
+  color: #888;
+}
+
+/* Submit button styled like Elementor buttons */
+#gform_wrapper_3 .gform_footer input[type="submit"] {
+  background-color: #EA2D91;
+  color: #ffffff;
+  font-family: "Montserrat", Sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: capitalize;
+  border-radius: 50px;
+  padding: 12px 25px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Submit button hover state */
+#gform_wrapper_3 .gform_footer input[type="submit"]:hover {
+  background-color: #FF6308;
+  color: #ffffff;
+}
+
+/* Optional: link colors if present */
+#gform_wrapper_3 a {
+  color: #EA2D91;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+#gform_wrapper_3 a:hover {
+  color: #FF6308;
+}
+
+#gform_wrapper_3 .gfield_description {
+  color: #ffffff;
+}
+
+#gform_wrapper_3 .gform-field-label,
+#gform_wrapper_3 .gfield_label,
+#gform_wrapper_3 .gform-field-label--type-sub {
+  font-family: "Montserrat-SemiBold", Sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #070339;
+}
+/* === STYLES FOR TALENT FORM ONLY (Form ID #4) === */
+
+#gform_wrapper_4 {
+  font-family: "Montserrat-SemiBold", Sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #070339;
+}
+
+/* Title and all field labels */
+#gform_wrapper_4 .gform_title,
+#gform_wrapper_4 .gfield_label,
+#gform_wrapper_4 .gform-field-label,
+#gform_wrapper_4 .gform-field-label--type-sub {
+  font-family: "Montserrat-SemiBold", Sans-serif;
+  font-weight: 600;
+  color: #070339;
+}
+
+/* Checkbox/Radio labels */
+#gform_wrapper_4 .gchoice label {
+  font-family: "Montserrat-SemiBold", Sans-serif;
+  color: #070339;
+}
+
+/* Input, textarea, select fields */
+#gform_wrapper_4 input[type="text"],
+#gform_wrapper_4 input[type="email"],
+#gform_wrapper_4 input[type="password"],
+#gform_wrapper_4 input[type="tel"],
+#gform_wrapper_4 input[type="url"],
+#gform_wrapper_4 input[type="number"],
+#gform_wrapper_4 select,
+#gform_wrapper_4 textarea {
+  background-color: #ffffff;
+  color: #112337;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Placeholder text */
+#gform_wrapper_4 input::placeholder,
+#gform_wrapper_4 textarea::placeholder {
+  color: #888;
+}
+
+/* Submit button styled like Elementor buttons */
+#gform_wrapper_4 .gform_footer input[type="submit"] {
+  background-color: #EA2D91;
+  color: #ffffff;
+  font-family: "Montserrat", Sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: capitalize;
+  border-radius: 50px;
+  padding: 12px 25px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Submit button hover state */
+#gform_wrapper_4 .gform_footer input[type="submit"]:hover {
+  background-color: #FF6308;
+  color: #ffffff;
+}
+
+/* Optional: link colors if present */
+#gform_wrapper_4 a {
+  color: #EA2D91;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+#gform_wrapper_4 a:hover {
+  color: #FF6308;
+}
+
+#gform_wrapper_4 .gfield_description {
+  color: #ffffff;
+}
+
+#gform_wrapper_4 .gform-field-label,
+#gform_wrapper_4 .gfield_label,
+#gform_wrapper_4 .gform-field-label--type-sub {
+  font-family: "Montserrat-SemiBold", Sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #070339;
+}
+
+
+
+.custom-register-link a {
+  color: #EA2D91;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.custom-register-link a:hover {
+  color: #FF6308;
+}
+
+/* Hides the avatar in login confirmation message */
+p:has(img.avatar) img.avatar {
+  display: none !important;
+}
+
+/* Styles the text inside that same paragraph */
+p:has(img.avatar) {
+  color: #FFFFFF !important;
+  font-weight: 500;
+}
+
+.directorist-single-tag-list a .directorist-icon-mask {
+    background-color: #FFFFFF !important;
+}
+
+.directorist-content-active .directorist-card {
+    border: none !important;
+    
+}
+
+/* Default style: float left in most contexts (like header section) */
+.directorist-single-listing-slider-wrap {
+  float: left;
+  width: 180px;
+  height: 180px;
+  margin-right: 1em;
+}
+
+/* CANCEL float inside .directorist-card context (e.g., contact info) */
+.directorist-card .directorist-single-listing-slider-wrap {
+  float: none !important;
+
+
+}
+#gform_wrapper_1 .gform_title {
+    color: #070339;
+    text-align: center;
+}
+
+
+#gform_wrapper_1 .gform_footer input[type="submit"] {
+ 
+    text-align: center;
+    margin: 0 auto;
+}
+
+#gform_wrapper_2 .gform_title {
+    color: #070339;
+    text-align: center;
+}
+
+
+#gform_wrapper_2 .gform_footer input[type="submit"] {
+ 
+    text-align: center;
+    margin: 0 auto;
+}
+
+#gform_wrapper_3 .gform_title {
+    color: #070339;
+    text-align: center;
+}
+
+
+#gform_wrapper_3 .gform_footer input[type="submit"] {
+ 
+    text-align: center;
+    margin: 0 auto;
+}
+
+#gform_wrapper_4 .gform_title {
+    color: #070339;
+    text-align: center;
+}
+
+
+#gform_wrapper_4 .gform_footer input[type="submit"] {
+ 
+    text-align: center;
+    margin: 0 auto;
+}
+
+.directorist-details-info-wrap .directorist-single-info__label__text
+
+ {
+
+    min-width: 0px !important;
+   
+}
+
+.directorist-details-info-wrap .directorist-single-info__label {
+    min-width: 0px !important;
+  
+}
+
+.directorist-single-listing-slider-wrap {
+  float: left;
+  width: 150px;
+  height: 150px;
+  margin-right: 1em !important;
+}
+
+.directorist-single-listing-slider-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.directorist-single-info-email,
+.directorist-single-info-web,
+.directorist-single-info-phone {
+  display: none !important;
+}
+
+.directorist-single-listing-slider-wrap {
+        
+    margin-bottom: 30px;
+}
+
+.directorist-details-info-wrap .directorist-single-info__label-icon {
+  background-color: #FF6308 !important; /* your plugin’s accent color */
+  color: #FFFFFF       !important; /* icon color */
+}
+
+/* If the SVG mask itself needs forcing to white: */
+.directorist-details-info-wrap .directorist-single-info__label-icon .directorist-icon-mask:after {
+  background-color: #FFFFFF !important;
+}
+.directorist-form-group label {
+  padding-top: 10px;
+    color: #070339 !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+    margin-bottom: 6px !important;
+    display: block !important;
+}
+
+
+
+.directorist-content-active .select2.select2-container.select2-container--default .select2-selection__choice {
+    height: 28px;
+  line-height: 15px !important;}
+
+.listing-with-sidebar__sidebar .directorist-form-group.directorist-search-field.input-is-focused .directorist-search-field__label {
+    top: -35px;
+    -webkit-transform: unset;
+    transform: unset;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 10px;
+    z-index: 1;
+    color: #ffffff !important;
+}
+
+
+.directorist-content-active .select2-container--default .select2-selection--multiple .select2-selection__rendered li .select2-search__field {
+    margin: 0;
+    max-width: 200px !important;
+    width: 100% !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+/* 1) Let the overall box grow to fit its contents */
+.select2-container--default .select2-selection--multiple {
+  height: auto !important;
+  min-height: 40px;              /* whatever your normal single-line height is */
+  overflow: visible !important;  /* show wrapped items */
+}
+
+/* 2) Allow the inner list of choices to wrap to new lines */
+.select2-container--default .select2-selection--multiple .select2-selection__rendered {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  white-space: normal !important;
+  padding: 4px;                  /* tweak to suit your spacing */
+}
+
+/* 3) Make sure the search input still flexes to the next line */
+.select2-container--default .select2-selection--multiple .select2-search--inline {
+  flex: 1 0 150px !important;    /* give it some breathing room */
+  margin-top: 4px;               /* match your tag margins */
+}
+
+
+.directorist-content-active .select2.select2-container.select2-container--default .select2-selection {
+   
+    border-bottom: none !important;
+}
+
+.directorist-content-active .select2-container--default .select2-selection--multiple .select2-selection__rendered li {
+    margin-left: 0px;
+    margin-top: 0px !important;
+}
+
+/* --- FORCE POPUP SMALL --- */
+#gmap .leaflet-popup-content-wrapper,
+#map .leaflet-popup-content-wrapper,
+.directorist-single-map .leaflet-popup-content-wrapper {
+  width: 140px !important;
+  max-width: 140px !important;
+  padding: 0 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2) !important;
+  background: #fff !important;
+}
+
+#gmap.leaflet-container .leaflet-popup-content, #map.leaflet-container .leaflet-popup-content, .directorist-single-map.leaflet-container .leaflet-popup-content {
+    margin: 0;
+    line-height: 1;
+    width: 140px !important;
+}
+
+/* --- REMOVE INTERNAL MARGINS --- */
+#gmap .leaflet-popup-content,
+#map .leaflet-popup-content,
+.directorist-single-map .leaflet-popup-content {
+  margin: 0 !important;
+  padding: 6px !important;
+  width: 100% !important;
+  line-height: 1.2;
+}
+
+/* --- INNER CARD RESET --- */
+.map-listing-card-single {
+  padding: 0 !important;
+  box-shadow: none !important;
+  background: transparent !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* --- SMALL AVATAR IMAGE --- */
+.map-listing-card-single__img img {
+  width: 60px !important;
+  height: 60px !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+  margin-bottom: 4px;
+}
+
+/* --- TITLE ONLY --- */
+.map-listing-card-single__content {
+  padding: 0 !important;
+}
+
+.map-listing-card-single__content__title {
+  font-size: 13px !important;
+  margin: 0 !important;
+  font-weight: bold !important;
+}
+
+/* --- HIDE UNNEEDED ELEMENTS --- */
+.map-listing-card-single__content__meta,
+.map-listing-card-single__content__info,
+.map-listing-card-single__author,
+.directorist-mark-as-favorite__btn {
+ display:none
+}
+
+/* --- Prevent responsive override on mobile --- */
+@media only screen and (max-width: 480px) {
+  #gmap .leaflet-popup-content,
+  #map .leaflet-popup-content,
+  .directorist-single-map .leaflet-popup-content {
+    width: 140px !important;
+  }
+}
+.directorist-search-tags {
+    max-height: none !important;
+    overflow: visible !important;
+}
+
+.directorist-btn-ml {
+    display: none !important;
+}
+
+.directorist-advanced-filter__advanced__element .directorist-search-tags .directorist-checkbox {
+    display: block; 
+}
+
+.directorist-form-group label {
+    padding-top: 0px !important;
+    color: #ffff !important;
+    font-weight: 400 !important;
+    font-size: 14px !important;
+    margin-bottom: 0px !important;
+    display: block !important;
+    font-family: 'Montserrat-Regular', sans-serif !important;
+}
+
+.listing-with-sidebar__sidebar .directorist-search-basic-dropdown-content {
+    display: block !important;
+    height: 100% !important;
+}
+
+.listing-with-sidebar__sidebar .directorist-advanced-filter__action.directorist-advanced-filter__action--ajax .directorist-btn-reset-ajax {
+    padding: 0;
+    color: #ea2d91;
+    background: transparent;
+    width: auto;
+    height: auto;
+    line-height: normal;
+    font-size: 16px;
+    font-weight: 800 !important;
+    font-family: 'Montserrat-Regular' !important;
+}
+
+.listing-with-sidebar__sidebar .directorist-advanced-filter__action.directorist-advanced-filter__action--ajax.reset-btn-disabled {
+    display: block;
+}
+
+@media (max-width: 991px) {
+  .listing-with-sidebar__contents {
+    display: block !important; /* no flex */
+    width: 100% !important;
+  }
+
+  .listing-with-sidebar__listing {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .listing-with-sidebar__sidebar {
+    position: absolute !important;
+    width: 0 !important;
+    overflow: hidden !important;
+  }
+}
+.directorist-language-label {
+    color: #000 !important;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.directorist-advanced-filter__advanced__element,
+.directorist-search-field,
+.directorist-form-group,
+.directorist-search-field__input,
+.atbdp-custom-dropdown {
+    width: 100% !important;
+    box-sizing: border-box;
+    display: block;
+}
+
+/* === Container Setup === */
+.atbdp-custom-dropdown {
+    position: relative;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 12px;
+    color: #fff;
+    width: 100%;
+    box-sizing: border-box;
+    min-width: 200px;
+}
+
+/* === Selected Text (Top of Dropdown) === */
+.atbdp-dropdown-selected {
+    font-size: 14px;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* === Dropdown List (Expanded State) === */
+.atbdp-dropdown-list {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    color: #333333;
+    border: 1px solid var(--directorist-color-border-light, #ccc);
+    border-radius: 10px;
+    z-index: 9999;
+    max-height: 250px;
+    overflow-y: auto;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* === Each Checkbox Item === */
+.atbdp-dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #333333;
+    background-color: transparent;
+    transition: background-color 0.2s ease;
+}
+
+.atbdp-dropdown-item:hover {
+    background-color: #f5f5f5;
+    color: #000000;
+}
+
+/* === Checkbox Style === */
+.atbdp-dropdown-item input[type="checkbox"] {
+    margin-right: 8px;
+    accent-color: #FF6308; /* Customize if desired */
+}
+
+/* === Directorist styling compatibility === */
+.directorist-select2-contents {
+    display: block;
+    width: 100%;
+}
+.atbdp-dropdown-item label,
+.atbdp-dropdown-item span {
+    color: #000 !important;
+}
+
+/* Ensure dropdown expands over surrounding elements */
+.atbdp-dropdown-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    z-index: 9999; /* Raise it above the form */
+    max-height: 220px; /* Show about 4–5 items */
+    overflow-y: auto;
+    padding: 4px 0;
+}
+
+/* Prevent parent from clipping the dropdown */
+.directorist-form-group {
+    position: relative;
+    overflow: visible; /* allow dropdown to expand */
+}
+
+/* Optional: ensure clickable area is usable */
+.atbdp-custom-dropdown {
+    position: relative;
+    z-index: 1; /* needed for stacking in some layouts */
+}
+.atbdp-dropdown-list {
+    position: absolute !important;
+    top: 100%;
+    left: 0;
+    width: 100% !important;
+    max-width: 350px;
+    box-sizing: border-box;
+    z-index: 9999; /* same as Select2 */
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    max-height: 240px; /* show at least 4 items */
+    overflow-y: auto;
+    padding: 4px 0;
+}
+
+.directorist-form-group {
+    position: relative;
+    overflow: visible !important;
+}
+
+/* Ensure the container allows overflow */
+/* .directorist-form-group {
+  position: relative;
+  overflow: visible !important;
+  z-index: 1;
+} */
+
+/* Boost the z-index of your custom dropdown */
+.atbdp-custom-dropdown {
+  position: relative;
+  z-index: 9999;
+}
+
+/* Force the dropdown list to overlay properly */
+.atbdp-dropdown-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 250px;
+  background: #fff;
+  color: #000;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  z-index: 9999;
+}
+.directorist-advanced-filter__advanced__element {
+  overflow: visible !important;
+}
+
+/* Target dropdown list specifically */
+.atbdp-dropdown-list {
+    border-radius: 10px;
+    overflow: hidden;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ccc transparent;
+}
+
+/* For WebKit (Chrome, Safari, Edge) */
+.atbdp-dropdown-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.atbdp-dropdown-list::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+}
+
+.atbdp-dropdown-list::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 10px;
+    border: 2px solid transparent; /* creates spacing inside */
+    background-clip: content-box;
+}
+.atbdp-dropdown-selected-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 6px 0;
+}
+
+.atbdp-dropdown-selected {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 400;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.directorist-select2-addon {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+}
+
+.atbdp-dropdown-selected-wrapper {
+    display: flex
+;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 6px 0;
+    background-color: rgba(255, 255, 255, 0.15) !important;
+    border-radius: 50px !important;
+    padding: 10px 20px !important;
+}
+
+.directorist-select2-addon {
+    margin-left: auto; /* Pushes it to the far right */
+    padding-left: 20px;
+}
+
+.atbdp-custom-dropdown {
+    position: relative;
+    z-index: 20; /* higher than the default select2 which is around 10–15 */
+}
+
+.atbdp-dropdown-list {
+    position: absolute;
+    z-index: 9999; /* Make sure it's on top of everything else */
+    background: #fff;
+    border-radius: 10px;
+    max-height: 250px;
+    overflow-y: auto;
+    width: 100%;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Main dropdown container */
+.atbdp-custom-dropdown {
+    position: relative;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 12px 16px;
+    color: #fff;
+    box-sizing: border-box;
+    z-index: 10000; /* Must be higher than any Select2 element */
+}
+
+/* Selected text display */
+.atbdp-dropdown-selected {
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Dropdown list styling */
+.atbdp-dropdown-list {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 10001;
+    width: 100%;
+    max-height: 250px;
+    overflow-y: auto;
+    background: #ffffff !important;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    padding: 8px 0;
+}
+
+/* Dropdown item label */
+.atbdp-dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #333;
+    background-color: #FFFFFF;
+    cursor: pointer;
+}
+
+.atbdp-dropdown-item:hover {
+    background-color: #f5f5f5;
+    color: #000;
+}
+
+/* Checkbox style */
+.atbdp-dropdown-item input[type="checkbox"] {
+    margin-right: 10px;
+    accent-color: #FF6308; /* Optional match for Directorist theme */
+}
+
+/* Chevron icon positioning */
+.directorist-select2-addon.directorist-select2-dropdown-toggle {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    z-index: 10002;
+    pointer-events: none;
+}
+
+.listing-with-sidebar__sidebar .directorist-form-group.directorist-search-field.input-is-focused .directorist-search-field__label {
+    top: -35px;
+    -webkit-transform: unset;
+    transform: unset;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 10px;
+    z-index: 1;
+    color: #ffffff !important;
+    display: none !important;
+}
+
+.listing-with-sidebar__sidebar .directorist-form-group.directorist-search-field.input-is-focused {
+    width: 100%;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    margin-top: 0px !important;
+}
+
+.listing-with-sidebar__sidebar .directorist-form-group.directorist-search-field.input-is-focused .directorist-search-field__label {
+    top: -35px;
+    -webkit-transform: unset;
+    transform: unset;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 0 10px;
+    z-index: 1;
+    color: #ffffff !important;
+    display: none !important;
+}
+
+.listing-with-sidebar__sidebar .directorist-form-group.directorist-search-field.input-is-focused {
+    width: 100%;
+    display: -webkit-inline-box;
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    margin-top: 0px !important;
+}
+
+.atbdp-dropdown-selected {
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+.directorist-select2-addon {
+    margin-left: auto;
+    padding-left: 10px;
+}
+
+.listing-with-sidebar__sidebar .directorist-advanced-filter__action.directorist-advanced-filter__action--ajax
+
+ {
+    padding: 0;
+    border: none;
+    text-align: end;
+    margin: -20px 0 20px;
+    z-index: 0 !important;
+}
+
+
+
+.listing-with-sidebar__sidebar form {
+    width: 100%;
+    background-color: #070339 !important;
+}
+
+.listing-with-sidebar__sidebar .directorist-advanced-filter__advanced
+
+ {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 25px 0px 0 !important;
+}
+
+
+#directorist-contact-owner-form .directorist-form-element {
+    color: #000000 !important;
+}
+
+#header-cover-image {
+    background-color: #c5c5c5;
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+    border: 0;
+    display: block;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+    height: 350px;
+    position: relative;
+    display: none;
+}
+.directorist-col-4,
+.directorist-col-5 {
+    flex: 0 0 33.3333%; /* or 20% for .col-5 */
+    max-width: 33.3333%; /* control max width */
+    box-sizing: border-box;
+    padding: 10px; /* optional spacing */
+    display: flex;
+    flex-direction: column;
+}
+
+@media (max-width: 768px) {
+    .directorist-col-4,
+    .directorist-col-5 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+.atbdp-dropdown-list {
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    background: #fff;
+}
+
+.atbdp-dropdown-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.atbdp-dropdown-list::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.3);
+    border-radius: 3px;
+}
