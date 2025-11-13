@@ -97,6 +97,16 @@ class Common {
             }
         }
         
+        if ( 'single/header-parts/listing-title' == $template ) {
+            $template = DLF_PLUGIN_DIR . 'templates/single/social.php';
+             if ( file_exists( $template ) ) {
+
+                dcf_load_template( $template, $args );
+                
+                return false;
+            }
+        }
+        
         return $template;
 
     }
