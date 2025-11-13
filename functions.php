@@ -170,3 +170,151 @@ if ( ! function_exists( 'add_all_countries_to_country_expert' ) ) {
     }
 }
 
+if ( ! function_exists( 'get_iso_base_languages' )) {
+    function get_iso_base_languages() {
+        return [
+            'af' => 'Afrikaans',
+            'sq' => 'Albanian',
+            'am' => 'Amharic',
+            'ar' => 'Arabic',
+            'hy' => 'Armenian',
+            'az' => 'Azerbaijani',
+            'eu' => 'Basque',
+            'be' => 'Belarusian',
+            'bn' => 'Bengali',
+            'bs' => 'Bosnian',
+            'bg' => 'Bulgarian',
+            'ca' => 'Catalan',
+            'ceb' => 'Cebuano',
+            'ny' => 'Chichewa',
+            'zh' => 'Chinese',
+            'co' => 'Corsican',
+            'hr' => 'Croatian',
+            'cs' => 'Czech',
+            'da' => 'Danish',
+            'nl' => 'Dutch',
+            'en' => 'English',
+            'eo' => 'Esperanto',
+            'et' => 'Estonian',
+            'tl' => 'Filipino',
+            'fi' => 'Finnish',
+            'fr' => 'French',
+            'fy' => 'Frisian',
+            'gl' => 'Galician',
+            'ka' => 'Georgian',
+            'de' => 'German',
+            'el' => 'Greek',
+            'gu' => 'Gujarati',
+            'ht' => 'Haitian Creole',
+            'ha' => 'Hausa',
+            'haw' => 'Hawaiian',
+            'he' => 'Hebrew',
+            'hi' => 'Hindi',
+            'hmn' => 'Hmong',
+            'hu' => 'Hungarian',
+            'is' => 'Icelandic',
+            'ig' => 'Igbo',
+            'id' => 'Indonesian',
+            'ga' => 'Irish',
+            'it' => 'Italian',
+            'ja' => 'Japanese',
+            'jw' => 'Javanese',
+            'kn' => 'Kannada',
+            'kk' => 'Kazakh',
+            'km' => 'Khmer',
+            'ko' => 'Korean',
+            'ku' => 'Kurdish',
+            'ky' => 'Kyrgyz',
+            'lo' => 'Lao',
+            'la' => 'Latin',
+            'lv' => 'Latvian',
+            'lt' => 'Lithuanian',
+            'lb' => 'Luxembourgish',
+            'mk' => 'Macedonian',
+            'mg' => 'Malagasy',
+            'ms' => 'Malay',
+            'ml' => 'Malayalam',
+            'mt' => 'Maltese',
+            'mi' => 'Maori',
+            'mr' => 'Marathi',
+            'mn' => 'Mongolian',
+            'my' => 'Myanmar (Burmese)',
+            'ne' => 'Nepali',
+            'no' => 'Norwegian',
+            'or' => 'Odia (Oriya)',
+            'ps' => 'Pashto',
+            'fa' => 'Persian',
+            'pl' => 'Polish',
+            'pt' => 'Portuguese',
+            'pa' => 'Punjabi',
+            'ro' => 'Romanian',
+            'ru' => 'Russian',
+            'sm' => 'Samoan',
+            'gd' => 'Scots Gaelic',
+            'sr' => 'Serbian',
+            'st' => 'Sesotho',
+            'sn' => 'Shona',
+            'sd' => 'Sindhi',
+            'si' => 'Sinhala',
+            'sk' => 'Slovak',
+            'sl' => 'Slovenian',
+            'so' => 'Somali',
+            'es' => 'Spanish',
+            'su' => 'Sundanese',
+            'sw' => 'Swahili',
+            'sv' => 'Swedish',
+            'tg' => 'Tajik',
+            'ta' => 'Tamil',
+            'tt' => 'Tatar',
+            'te' => 'Telugu',
+            'th' => 'Thai',
+            'tr' => 'Turkish',
+            'tk' => 'Turkmen',
+            'uk' => 'Ukrainian',
+            'ur' => 'Urdu',
+            'ug' => 'Uyghur',
+            'uz' => 'Uzbek',
+            'vi' => 'Vietnamese',
+            'cy' => 'Welsh',
+            'xh' => 'Xhosa',
+            'yi' => 'Yiddish',
+            'yo' => 'Yoruba',
+            'zu' => 'Zulu',
+        ];
+    }   
+
+} ;
+
+function reset_atbdp_languages_with_iso_list() {
+    $taxonomy = 'atbdp_language';
+
+    // 1️⃣ Delete all existing terms in the taxonomy
+    $existing_terms = get_terms([
+        'taxonomy'   => $taxonomy,
+        'hide_empty' => false,
+    ]);
+
+    if (!is_wp_error($existing_terms) && !empty($existing_terms)) {
+        foreach ($existing_terms as $term) {
+            wp_delete_term($term->term_id, $taxonomy);
+        }
+    }
+
+    // 2️⃣ Get ISO base language list
+    $languages = get_iso_base_languages();
+
+    if (empty($languages)) {
+        return '❌ No languages found in ISO list.';
+    }
+
+    // 3️⃣ Add each language as a new term
+    foreach ($languages as $code => $name) {
+        wp_insert_term($name, $taxonomy, [
+            'slug' => sanitize_title($code),
+        ]);
+    }
+
+    return '✅ atbdp_language taxonomy reset completed successfully!';
+}
+
+
