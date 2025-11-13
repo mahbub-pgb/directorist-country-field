@@ -52,8 +52,4 @@ if ( ! empty( $socials ) ) :
             <?php endforeach; ?>
         </div>
     </div>
-<?php else : ?>
-    <div class="directorist-no-socials">
-        <p><?php esc_html_e( 'No social links found.', 'directorist' ); ?></p>
-    </div>
 <?php endif; ?>
