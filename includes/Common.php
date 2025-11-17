@@ -54,7 +54,7 @@ class Common {
 
     public function change_template( $template, $args ){
 
-        // dlf_pri( $template );
+        dlf_pri( $template );
 
 
         if ( 'listing-form/fields/country_expert' == $template ) {
